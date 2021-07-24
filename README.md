@@ -23,3 +23,5 @@
 > Android toolchain - develop for Android devices (Android SDK version 31.0.0)
     X No Java Development Kit (JDK) found; You must have the environment variable JAVA_HOME set and the java binary in
       your PATH. You can download the JDK from https://www.oracle.com/technetwork/java/javase/downloads/.
+
+- 降低jdk版本重新尝试
