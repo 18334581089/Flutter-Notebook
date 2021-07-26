@@ -25,3 +25,20 @@
       your PATH. You can download the JDK from https://www.oracle.com/technetwork/java/javase/downloads/.
 
 - 降低jdk版本重新尝试
+
+#### 7/26
+- 尝试降低版本
+1. 删除之前下载jdk
+2. 下载jdk 8.0版本 （安装完成）
+3. flutter doctor 
+> 报错1
+
+**VersionCheckError Command exited with code 128: git fetch __flutter_version_check__ stable
+Standard error: fatal: unable to access 'https://github.com/flutter/flutter.git/': OpenSSL SSL_connect: SSL_ERROR_SYSCALL in
+connection to github.com:443**
+
+> 报错2，还是之前的
+
+**Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+    X No Java Development Kit (JDK) found; You must have the environment variable JAVA_HOME set and the java binary in your
+      PATH. You can download the JDK from https://www.oracle.com/technetwork/java/javase/downloads/.**
