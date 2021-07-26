@@ -42,3 +42,39 @@ connection to github.com:443**
 **Android toolchain - develop for Android devices (Android SDK version 31.0.0)
     X No Java Development Kit (JDK) found; You must have the environment variable JAVA_HOME set and the java binary in your
       PATH. You can download the JDK from https://www.oracle.com/technetwork/java/javase/downloads/.**
+
+- 解决报错
+1. 关于报错1，在flutter console中执行flutter doctor 没有报错
+> 第一个问题暂时解决
+2. 之前的报错还在提示
+> 不一样的是，这次，提示了要配置环境变量
+> **转折** 在flutter console中执行的时候，现时以下提示
+
+**Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+    ! Some Android licenses not accepted.  To resolve this, run: flutter doctor --android-licenses**
+> 所以直接执行提示的命令
+> 执行结果： All SDK package licenses accepted
+
+- 再次执行doctor
+> 报错:
+
+**Android Studio (not installed)**
+
+> 通过查看[博客解决](https://blog.csdn.net/Tymt_tt/article/details/117710044)
+
+
+- 再次执行doctor
+> 报错1:
+
+**Android toolchain - develop for Android devices (Android SDK version 31.0.0)
+    X Android license status unknown.
+      Run `flutter doctor --android-licenses` to accept the SDK licenses.
+      See https://flutter.dev/docs/get-started/install/windows#android-setup for more details.**
+
+> 还是和之前一样的报错
+> 执行 flutter doctor --android-licenses
+> 报错:
+
+**NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema**
+> 又回到了之前的问题,
+> 我查看java 版本已经下载的是1.8(重启也没有作用)
