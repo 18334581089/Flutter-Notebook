@@ -78,3 +78,26 @@ connection to github.com:443**
 **NoClassDefFoundError: javax/xml/bind/annotation/XmlSchema**
 > 又回到了之前的问题,
 > 我查看java 版本已经下载的是1.8(重启也没有作用)
+
+#### 7/27
+- 解决上次的报错问题
+**NoClassDefFoundError**
+> 导致这个问题是因为,版本高导致的没有找到对应类
+> 如果版本是1.8还有这个问题就是可能没有配置环境变量
+
+- 重新执行 flutter doctor,没有问题
+
+- Android studio 之前的报错
+> 解决
+> [博客: 因为之前配置的jdk路径有问题导致](https://blog.csdn.net/hubojing/article/details/106688617)
+
+**配置路径没有解决问题**
+
+> 感觉应该是: android sdk 没有配置路径(而不是jdk)
+
+**解决问题**
+> 还是博客里面讲的, 下拉选择的不是jdk  而是  sdk ,选择后,重新启动手机就好了
+
+- 开始看语法
+
+- 初始化一个flutter项目
