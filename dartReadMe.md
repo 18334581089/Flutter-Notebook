@@ -106,3 +106,50 @@ class ModelA {
 
 > 1. 相当于react中的 组件
 > 2. 响应式模式进行渲染,通过setState修改状态,自动同步界面
+> 3. Widget 和 Widget 之间通过 child: 进行嵌套(多个child使用children)
+
+#### 7/28
+
+3. **无状态StatelessWidget**
+
+> 1. 实例: statelesswidget.dart
+> 2. widget: 数据可以通过构造方法传递进来
+
+4. **有状态StatefulWidget**
+
+> 1. 实例: StatefulWidget.dart
+> 2. 对于StatefulWidget控件创建管理的是主要是 State
+> 3. State 的 build 方法用来构建控件
+> 4. State中: setState之后，改变的数据会触发 Widget 重新构建刷新
+
+5. **State声明周期**
+
+> 1. initState: 初始化
+> 2. didChangeDependencies: 初始化之后,可以获取其他 State
+> 3. dispose : 销毁
+
+***
+
+1. **Flutter 布局简介**
+
+| 类型 |	作用特点 |
+| -- | -- |
+| Container |	一个子 Widget。默认充满，包含了padding、margin、color、宽高、decoration 等配置。 |
+| Padding |	一个子 Widget。只用于设置Padding，常用于嵌套child，给child设置padding。 |
+| Center |	一个子 Widget。只用于居中显示，常用于嵌套child，给child设置居中。 |
+| Stack |	多个子 Widget。子Widget堆叠在一起。 |
+| Column |	多个子 Widget。垂直布局。 |
+| Row |	多个子 Widget。水平布局。 |
+| Expanded |	一个子 Widget。在 Column 和 Row 中充满。 |
+| ListView |	多个子 Widget。自己意会吧。 |
+
+2. **Container**
+
+> 1. 不是所有的控件都有 宽高、padding、margin、color 等属性，所以才会有 Padding、Center 等 Widget 的存在
+> 2. Container: 多个内置控件组成的模版,
+> 3. Container: 支持 padding,margin,color,宽高,decoration
+> 4. 实例: Container.dart
+
+3. **Column、Row**
+
+> 1. flutter:  必备布局
