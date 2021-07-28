@@ -11,7 +11,7 @@ class DEMOWidget extends StatelessWidget {
         width: 500.0,
 
         ///透明黑色遮罩
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
 
             ///弧度为4.0
             borderRadius: BorderRadius.all(Radius.circular(4.0)),
@@ -20,8 +20,9 @@ class DEMOWidget extends StatelessWidget {
             color: Colors.black,
 
             ///边框
-            border: new Border.all(
-                color: Color(20), width: 0.3)),
-        child: new Text("666666"));
+            border: Border.all(
+                color: Color(20), width: 0.3),
+        ),
+        child: Text("666666"));
   }
 }

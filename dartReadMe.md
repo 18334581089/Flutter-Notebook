@@ -153,3 +153,37 @@ class ModelA {
 3. **Column、Row**
 
 > 1. flutter:  必备布局
+> 2. 常用属性: 
+> 3. mainAxisAlignment: 主轴对齐方式
+> 4. crossAxisAlignment: 复轴对齐方式
+> 5. mainAxisSize: 充满父级尺寸方式
+
+4. **Expanded**
+
+> 1. css中flex的作用
+> 2. 配合column 和 row 来使用
+> 3. 常用属性:
+> 4. flex: 表示弹性系数(咱多大地方),默认1
+
+***dart 1.x的时候，new是不能省略的。
+dart 2.x的时候，new是可选关键词，可以省略***
+
+> 5. Row设置mainAxisAlignment:MainAxisAlignment.spaceEvenly 和 在column或row中使用expanded的效果区别
+> 6. 都能实现平等分布剩余空间,使用expanded会该表原来的组件大小
+> 7. 实例: Row.dart
+
+***dart中如果使用_开头,表示当前变量和方法时私有的***
+
+***
+
+1. **Flutter 页面**
+
+| 类型 |	作用特点 |
+| -- | -- |
+| MaterialApp |	APP顶层的主页入口，可配置主题，多语言，路由等 |
+| Scaffold | 页面的承载Widget，包含appbar、snackbar、drawer |
+| Appbar | Scaffold的appbar ，有标题，返回按键等，tabbar会需要它 。 |
+| Text |	显示文本，通过style设置TextStyle来设置字体样式等。 |
+| RichText |	富文本，通过设置TextSpan，可以拼接出富文本场景。 |
+| TextField |	文本输入框 ：TextField(controller: //文本控制器, obscureText: "hint文本"); |
+| Image |	图片加载: FadeInImage.assetNetwork( placeholder: "预览图", fit: BoxFit.fitWidth, image: "url"); |

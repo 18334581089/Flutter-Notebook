@@ -119,3 +119,9 @@ connection to github.com:443**
 - 开始看语法
 
 - 初始化一个flutter项目
+
+#### 7/28
+
+**通过模拟器启动项目时报错**
+
+```Exception in thread "main" java.net.ConnectException: Connection timed out```
