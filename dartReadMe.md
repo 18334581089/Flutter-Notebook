@@ -198,3 +198,35 @@ dart 2.x的时候，new是可选关键词，可以省略***
 1. 控制器的销毁方法,使用了 !. 的形式
 > _tabController!.dispose();
 > 没找到相关文档,应该和ts一样,如果有dispose就执行
+
+2. tabBarWidget的示例部分,和最终完成的项目文件之间有很多冲突,并且示例部分会有报错,
+> 保证不报错: 先按照实例部分内容写,报错的部分用最终完成的项目来替换
+> 保证了解组件: 明白控件的功能和作用
+
+- 第一版TabBarWidget.dart已经完成
+
+1. 先看懂组件里面的构成
+> pageview: 控件。这个主要是用于界面的翻页，翻屏
+> pageview.controller方法: 值为PageController类,控制初始化显示第几个页面,以及占满屏幕的方法
+> TabController: 可以作为TabBar的controller属性值,用来控制和获取tabs的状态
+> with SingleTickerProviderStateMixin: with相当于mixin混入,用来实现: Tab 的动画切换效果
+
+- 接着看文档
+1. 代码中还缺少了 TabBarItem 的点击
+> 复制线上的代码 `onTap: _navigationTapClick),`
+> 增加 `onSinglePress` 参数, 增加`_navigationTapClick`方法
+> **_pageController.jumpTo** 
+> pageController.jumpToPage(0);无动画切换到指定的页面
+> pageController.jumpTo(100);无动画 切换到指定的位置(也可以切换页面)
+> **MediaQuery.of(context)** MediaQuery.of获取当前设备的信息,MediaQueryData是MediaQuery.of获取数据的类型, MediaQueryData.size表示逻辑像素，
+
+2. 文档中的解释
+每个 Tabbar 点击时，通过pageController.jumpTo 跳转页面，每个页面需要跳转坐标为：当前屏幕大小乘以索引 index 
+
+- TabBarBottomPageWidget 控件
+
+1. 先照着文档写下来并且看着线上文档改正格式
+
+2. 报错的已经完全解决了,接下来先看懂他要干嘛,他能干嘛
+
+3. 尝试在模拟器(chrome)中打开
