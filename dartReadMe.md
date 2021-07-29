@@ -187,3 +187,14 @@ dart 2.x的时候，new是可选关键词，可以省略***
 | RichText |	富文本，通过设置TextSpan，可以拼接出富文本场景。 |
 | TextField |	文本输入框 ：TextField(controller: //文本控制器, obscureText: "hint文本"); |
 | Image |	图片加载: FadeInImage.assetNetwork( placeholder: "预览图", fit: BoxFit.fitWidth, image: "url"); |
+
+
+#### 7/28
+
+- 由于从网上直接把最终的代码拷贝过来,所以
+- 尝试删去多余的代码
+- 先找主要的区别
+
+1. 控制器的销毁方法,使用了 !. 的形式
+> _tabController!.dispose();
+> 没找到相关文档,应该和ts一样,如果有dispose就执行

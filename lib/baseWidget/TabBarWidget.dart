@@ -66,7 +66,8 @@ class _GSYTabBarState extends State<GSYTabBarWidget>
   @override
   void initState() {
     super.initState();
-/// 通过 with SingleTickerProviderStateMixin 实现动画效果。
+
+    /// 通过 with SingleTickerProviderStateMixin 实现动画效果。
     _tabController =
         TabController(vsync: this, length: widget.tabItems!.length);
   }
@@ -104,16 +105,79 @@ class _GSYTabBarState extends State<GSYTabBarWidget>
     widget.onDoublePress?.call(index);
   }
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   if (widget.type == TabType.top) {
+  //     ///顶部tab bar
+  //     return Scaffold(
+  //       resizeToAvoidBottomInset: widget.resizeToAvoidBottomPadding,
+  //       floatingActionButton:
+  //           SafeArea(child: widget.floatingActionButton ?? Container()),
+  //       floatingActionButtonLocation: widget.floatingActionButtonLocation,
+  //       persistentFooterButtons: widget.footerButtons,
+  //       appBar: AppBar(
+  //         backgroundColor: Theme.of(context).primaryColor,
+  //         title: widget.title,
+  //         bottom: TabBar(
+  //             controller: _tabController,
+  //             tabs: widget.tabItems!,
+  //             indicatorColor: widget.indicatorColor,
+  //             onTap: _navigationTapClick),
+  //       ),
+  //       body: PageView(
+  //         controller: _pageController,
+  //         children: widget.tabViews!,
+  //         onPageChanged: _navigationPageChanged,
+  //       ),
+  //       bottomNavigationBar: widget.bottomBar,
+  //     );
+  //   }
+
+  //   ///底部tab bar
+  //   return Scaffold(
+  //       drawer: widget.drawer,
+  //       appBar: AppBar(
+  //         backgroundColor: Theme.of(context).primaryColor,
+  //         title: widget.title,
+  //       ),
+  //       body: PageView(
+  //         controller: _pageController,
+  //         children: widget.tabViews!,
+  //         onPageChanged: _navigationPageChanged,
+  //       ),
+  //       bottomNavigationBar: Material(
+  //         //为了适配主题风格，包一层Material实现风格套用
+  //         color: Theme.of(context).primaryColor, //底部导航栏主题颜色
+  //         child: SafeArea(
+  //           child: Tabs.TabBar(
+  //             //TabBar导航标签，底部导航放到Scaffold的bottomNavigationBar中
+  //             controller: _tabController,
+  //             //配置控制器
+  //             tabs: widget.tabItems!,
+  //             indicatorColor: widget.indicatorColor,
+  //             onDoubleTap: _navigationDoubleTapClick,
+  //             onTap: _navigationTapClick, //tab标签的下划线颜色
+  //           ),
+  //         ),
+  //       ));
+  // }
   @override
   Widget build(BuildContext context) {
-    if (widget.type == TabType.top) {
-      ///顶部tab bar
-      return Scaffold(
-        resizeToAvoidBottomInset: widget.resizeToAvoidBottomPadding,
+    return new Scaffold(
+        ///设置侧边滑出 drawer
+        // drawer: _drawer,
+        drawer: widget.drawer,
+        ///设置悬浮按键
+        // floatingActionButton: _floatingActionButton,
         floatingActionButton:
             SafeArea(child: widget.floatingActionButton ?? Container()),
         floatingActionButtonLocation: widget.floatingActionButtonLocation,
-        persistentFooterButtons: widget.footerButtons,
+
+        ///标题栏
+        // appBar: new AppBar(
+        //   backgroundColor: _backgroundColor,
+        //   title: _title,
+        // ),
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: widget.title,
@@ -123,40 +187,36 @@ class _GSYTabBarState extends State<GSYTabBarWidget>
               indicatorColor: widget.indicatorColor,
               onTap: _navigationTapClick),
         ),
-        body: PageView(
-          controller: _pageController,
-          children: widget.tabViews!,
-          onPageChanged: _navigationPageChanged,
-        ),
-        bottomNavigationBar: widget.bottomBar,
-      );
-    }
 
-    ///底部tab bar
-    return Scaffold(
-        drawer: widget.drawer,
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).primaryColor,
-          title: widget.title,
-        ),
-        body: PageView(
+
+        ///页面主体，PageView，用于承载Tab对应的页面
+        /// TODO
+        body: new PageView(
+          ///必须有的控制器，与tabBar的控制器同步
           controller: _pageController,
-          children: widget.tabViews!,
-          onPageChanged: _navigationPageChanged,
+
+          ///每一个 tab 对应的页面主体，是一个List<Widget>
+          children: _tabViews,
+          onPageChanged: (index) {
+            ///页面触摸作用滑动回调，用于同步tab选中状态
+            _tabController.animateTo(index);
+          },
         ),
-        bottomNavigationBar: Material(
-          //为了适配主题风格，包一层Material实现风格套用
-          color: Theme.of(context).primaryColor, //底部导航栏主题颜色
-          child: SafeArea(
-            child: Tabs.TabBar(
-              //TabBar导航标签，底部导航放到Scaffold的bottomNavigationBar中
-              controller: _tabController,
-              //配置控制器
-              tabs: widget.tabItems!,
-              indicatorColor: widget.indicatorColor,
-              onDoubleTap: _navigationDoubleTapClick,
-              onTap: _navigationTapClick, //tab标签的下划线颜色
-            ),
+
+        ///底部导航栏，也就是tab栏
+        bottomNavigationBar: new Material(
+          color: _backgroundColor,
+
+          ///tabBar控件
+          child: new TabBar(
+            ///必须有的控制器，与pageView的控制器同步
+            controller: _tabController,
+
+            ///每一个tab item，是一个List<Widget>
+            tabs: _tabItems,
+
+            ///tab底部选中条颜色
+            indicatorColor: _indicatorColor,
           ),
         ));
   }

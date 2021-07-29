@@ -125,3 +125,14 @@ connection to github.com:443**
 **通过模拟器启动项目时报错**
 
 ```Exception in thread "main" java.net.ConnectException: Connection timed out```
+
+#### 7/29
+
+- 解决报错
+
+1. 目前网上大部分写的是: 因为网络问题导致下载包失败,需要自己手动下载本地,然后在引入就好了
+
+2. 但是,我的报错内容中并没有提是版本下载失败,和他们控制台打印的有些出入
+
+3. 既然,chrome 端可以打开,就先这样用吧(半个小时没解决)
+
