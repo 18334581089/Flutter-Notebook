@@ -230,3 +230,28 @@ dart 2.x的时候，new是可选关键词，可以省略***
 2. 报错的已经完全解决了,接下来先看懂他要干嘛,他能干嘛
 
 3. 尝试在模拟器(chrome)中打开
+
+4. 展示,并且可以有交互(完成)
+
+#### 7/30
+
+- 优化
+
+1. 页面切换不在调用initState
+2. AutomaticKeepAliveClientMixin可以解决
+3. stl 然后回车就可以快速打出 基于stateLessWidget(同理 stf)
+4. 通过修改页面证实: 每次点击下面的切换都触发页面的initState方法(stateLessWidget 貌似没有initState的方法,所以使用了stateFulWidget)
+
+> 开始优化
+> 1. 对每一个需要优化的子页面使用AutomaticKeepAliveClientMixin混入实现
+> 2. 引入AutomaticKeepAliveClientMixin后,必须定义wantKeepAlive ,否则会有格式报错
+
+- 发现问题: 点文字没有用,点框有用
+1. 因为我按照最终的结果把跳转的方法卸载了TabBarWidget里面,外面的就可以去掉了
+
+- 实现顶部tab
+1. 底部的tab放在: Scaffold 的 bottomNavigationBar
+2. 顶部的tab放在: AppBar 的 bottom 中
+
+- 最后父页面需要控制 PageView 中子页的需求
+1. 使用GlobalKey实现

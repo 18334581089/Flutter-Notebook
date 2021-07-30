@@ -36,7 +36,7 @@ class TabBarWidget extends StatefulWidget {
     this.floatingActionButton,
     this.onPageChanged,
     this.onSinglePress,
-  }) : super(key: key);    
+  }) : super(key: key);
 
   @override
   _GSYTabBarState createState() => _GSYTabBarState();
@@ -60,8 +60,11 @@ class _GSYTabBarState extends State<TabBarWidget>
     );
 
     _tabController!.addListener(() {
-      print(_tabController!.index);
+      print('_tabController: ${_tabController!.index}');
     });
+
+    /// 触发initState
+    print('TabBarWidget 触发了 initState');
   }
 
   @override
@@ -87,6 +90,19 @@ class _GSYTabBarState extends State<TabBarWidget>
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: widget.title,
+          bottom: TabBar(
+            /// 顶部时，tabBar为可以滑动的模式
+            isScrollable: true,
+
+            /// 每一个tab item，是一个List<Widget>
+            tabs: widget.tabItems!,
+
+            /// 必须有的控制器，与pageView的控制器同步
+            controller: _tabController,
+
+            /// tab选中条颜色
+            indicatorColor: widget.indicatorColor,
+          ),
         ),
 
         /// 页面主体，PageView，用于承载Tab对应的页面
@@ -96,6 +112,8 @@ class _GSYTabBarState extends State<TabBarWidget>
 
           ///每一个 tab 对应的页面主体，是一个List<Widget>
           children: widget.tabViews!,
+
+          ///页面触摸作用滑动回调，用于同步tab选中状态
           onPageChanged: _navigationPageChanged,
         ),
 
@@ -122,7 +140,7 @@ class _GSYTabBarState extends State<TabBarWidget>
   }
 
   _navigationPageChanged(index) {
-    print(index);
+    print('_navigationPageChanged: $index');
     if (_index == index) {
       return;
     }
@@ -130,13 +148,14 @@ class _GSYTabBarState extends State<TabBarWidget>
     _tabController!.animateTo(index);
     widget.onPageChanged?.call(index);
   }
-  
+
   _navigationTapClick(index) {
     if (_index == index) {
       return;
     }
     _index = index;
     widget.onPageChanged?.call(index);
+
     ///每个 Tabbar 点击时，通过jumpTo 跳转页面
     ///每个页面需要跳转坐标为：当前屏幕大小 * 索引index。
     _pageController.jumpTo(MediaQuery.of(context).size.width * index);

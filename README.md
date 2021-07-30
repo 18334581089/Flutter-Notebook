@@ -136,3 +136,6 @@ connection to github.com:443**
 
 3. 既然,chrome 端可以打开,就先这样用吧(半个小时没解决)
 
+#### 7/30
+
+1. 新的报错,使用模拟器打开flutter项目异常

@@ -34,15 +34,17 @@ class _TabBarBottomPageWidgetState extends State<TabBarBottomPageWidget> {
     List<Widget> list = [];
     for (int i = 0; i < tab.length; i++) {
       list.add(
-        TextButton(
-          onPressed: () {
-            print('触发跳转');
-          },
-          child: Text(
-            tab[i],
-            maxLines: 1,
-          ),
-        ),
+        /// 跳转方法已经封装在了组件里面,这里只需要展示文字
+        // TextButton(
+        //   onPressed: () {
+        //     print('触发跳转');
+        //   },
+        //   child: Text(
+        //     tab[i],
+        //     maxLines: 1,
+        //   ),
+        // ),
+        Text(tab[i]),
       );
     }
     return list;
