@@ -255,3 +255,50 @@ dart 2.x的时候，new是可选关键词，可以省略***
 
 - 最后父页面需要控制 PageView 中子页的需求
 1. 使用GlobalKey实现
+
+
+#### 7/31
+
+- [Widget的key有什么用？GlobalKey又是什么](https://www.freesion.com/article/4003564716/)
+
+> 1. **_registry**: GlobalKey称之为Global,是因为它有一个属性_registry是一个静态map集合(以GlobalKey为key,以Element为value)
+> 2. **state**: StateFulWidget有一个属性state,就是当前StateFulWidget的createState()方法返回值
+> 3. **currentState**: GlobalKey的属性currentState,通过内部的_registry,获取对应Element的state(也就是对应StateFulWidget的state)
+> 4. **mount**: 通过Widget创建Element时调用的Element.mount方法,内部会判断key值是否是GlobalKey,Element
+
+- 总结GlobalKey
+> 1. 操控当前StatefulWidget的State的方法
+
+- 理解线上代码实例
+
+```
+  final GlobalKey<MyPageState> myKey = new GlobalKey();
+```
+```
+  new MyPage(key: myKey),
+  class MyPageState {
+    scrollToTop() {
+      if (scrollController.offset <= 0) {
+        scrollController
+            .animateTo(0,
+                duration: Duration(milliseconds: 600), curve: Curves.linear)
+            .then((_) {
+          showRefreshLoading();
+        });
+      } else {
+        scrollController.animateTo(0,
+            duration: Duration(milliseconds: 600), curve: Curves.linear);
+      }
+    }
+  }
+```
+```
+WillPopScope(
+  onDoublePress: (index) {
+    myKey.currentState!.scrollToTop();
+  }
+)
+```
+> WillPopScope: 用来处理是否离开当前页面[(博客)](https://zhuanlan.zhihu.com/p/140235529)
+
+> 通过GlobalKey获取当前widget的state,并在页面返回时,执行state里面的方法
