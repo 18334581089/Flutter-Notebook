@@ -302,3 +302,23 @@ WillPopScope(
 > WillPopScope: 用来处理是否离开当前页面[(博客)](https://zhuanlan.zhihu.com/p/140235529)
 
 > 通过GlobalKey获取当前widget的state,并在页面返回时,执行state里面的方法
+> **目前还没有使用GlobalKey的场景,用到的时候再说**
+
+- 上下拉 刷新列表
+
+1. 先熟悉普通思路
+> 1. RefreshIndicator: 内置下拉刷新控件
+> 2. ListView.ScrollController: 做滑动监听
+> 3. ListView 最后增加一个Item作为Loading的显示
+
+2. 复制线上代码
+> 开始理解代码,并且实际运行代码
+
+3. 问题
+**Flare动画**
+> 1. [参考博客](https://juejin.cn/post/6844903878396215304)
+> 2. 一般flutter实现动画的三种方式 (AnimationController, Hero, CustomPainter)
+> 3. 第四种flare: 它是一款免费的 网页版的动画制作工具, 
+> 4. 特点: (矢量动画, 可以极大的提高效率, 适合代码低耦合动画)
+
+**尝试引入博客中的flare文件成功**
