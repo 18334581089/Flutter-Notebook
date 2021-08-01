@@ -346,3 +346,8 @@ flutter:
   assets:
     - static/file/
 ```
+
+- 2.
+
+- AutomaticKeepAliveClientMixin: 纠正控制台格式校验
+> 1. 使用AutomaticKeepAliveClientMixin 要再build的时候加上`super.build(context);`这句话

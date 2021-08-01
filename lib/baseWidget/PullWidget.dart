@@ -1,89 +1,63 @@
-import 'package:flare_flutter/flare_actor.dart';
-import 'package:gsy_github_app_flutter/common/localization/default_localizations.dart';
-import 'package:gsy_github_app_flutter/widget/pull/gsy_refresh_sliver.dart'
-    as IOS;
 import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:gsy_github_app_flutter/common/style/gsy_style.dart';
-
-import 'custom_bouncing_scroll_physics.dart';
-import 'gsy_flare_pull_controller.dart';
 
 const double iosRefreshHeight = 140;
 const double iosRefreshIndicatorExtent = 100;
+const String app_empty = "目前什么也没有哟";
+const String load_more_text = "正在加载更多";
+const Color primaryDarkValue = Color(0xFF121917);
+const normalTextSize = 18.0;
+const normalText = TextStyle(
+  color: primaryDarkValue,
+  fontSize: normalTextSize,
+);
+const String DEFAULT_USER_ICON = 'static/images/logo.png';
 
 ///通用下上刷新控件
-class GSYPullLoadWidget extends StatefulWidget {
+class PullLoadWidget extends StatefulWidget {
   ///item渲染
   final IndexedWidgetBuilder itemBuilder;
-
-  ///加载更多回调
-  final RefreshCallback? onLoadMore;
 
   ///下拉刷新回调
   final RefreshCallback? onRefresh;
 
   ///控制器，比如数据和一些配置
-  final GSYPullLoadWidgetControl control;
-
-  final ScrollController? scrollController;
-
-  final bool userIos;
+  final PullLoadWidgetControl control;
 
   ///刷新key
   final Key? refreshKey;
 
-  GSYPullLoadWidget(
-      this.control, this.itemBuilder, this.onRefresh, this.onLoadMore,
-      {this.refreshKey, this.scrollController, this.userIos = false});
+  PullLoadWidget(this.control, this.itemBuilder, this.onRefresh,
+      {this.refreshKey});
 
   @override
-  _GSYPullLoadWidgetState createState() => _GSYPullLoadWidgetState();
+  _PullLoadWidgetState createState() => _PullLoadWidgetState();
 }
 
-class _GSYPullLoadWidgetState extends State<GSYPullLoadWidget>
-    with GSYFlarePullController {
-  //with GSYFlarePullMutliController {
-
-  final GlobalKey<IOS.CupertinoSliverRefreshControlState> sliverRefreshKey =
-      GlobalKey<IOS.CupertinoSliverRefreshControlState>();
-
-  ScrollController? _scrollController;
+class _PullLoadWidgetState extends State<PullLoadWidget> {
+  final ScrollController _scrollController = new ScrollController();
 
   bool isRefreshing = false;
 
   bool isLoadMoring = false;
 
-  @override
-  ValueNotifier<bool> isActive = ValueNotifier<bool>(true);
+  // var _tabController;
 
   @override
   void initState() {
-    _scrollController = widget.scrollController ?? ScrollController();
-
-    ///增加滑动监听
-    _scrollController!.addListener(() {
-      ///判断当前滑动位置是不是到达底部，触发加载更多回调
-      if (_scrollController!.position.pixels ==
-          _scrollController!.position.maxScrollExtent) {
-        if (widget.control.needLoadMore) {
-          handleLoadMore();
-        }
-      }
-    });
-
-    widget.control.addListener(() {
-      setState(() {});
-      try {
-        Future.delayed(Duration(seconds: 2), () {
-          // ignore: invalid_use_of_visible_for_testing_member, invalid_use_of_protected_member
-          _scrollController!.notifyListeners();
-        });
-      } catch (e) {
-        print(e);
-      }
-    });
     super.initState();
+
+    ///初始化时创建控制器
+    ///通过 with SingleTickerProviderStateMixin 实现动画效果。
+    // _tabController = new TabController(vsync: this, length: _tabItems.length);
+  }
+
+  @override
+  void dispose() {
+    ///页面销毁时，销毁控制器
+    // _tabController.dispose();
+    super.dispose();
   }
 
   ///根据配置状态返回实际列表数量
@@ -132,105 +106,15 @@ class _GSYPullLoadWidgetState extends State<GSYPullLoadWidget>
     }
   }
 
-  _lockToAwait() async {
-    ///if loading, lock to await
-    doDelayed() async {
-      await Future.delayed(Duration(seconds: 1)).then((_) async {
-        if (widget.control.isLoading) {
-          return await doDelayed();
-        } else {
-          return null;
-        }
-      });
-    }
-
-    await doDelayed();
-  }
-
-  @protected
-  Future<Null> handleRefresh() async {
-    if (widget.control.isLoading) {
-      if (isRefreshing) {
-        return null;
-      }
-
-      ///if loading, lock to await
-      await _lockToAwait();
-    }
-    widget.control.isLoading = true;
-    isRefreshing = true;
-    await widget.onRefresh?.call();
-    isRefreshing = false;
-    widget.control.isLoading = false;
-    return null;
-  }
-
-  @protected
-  Future<Null> handleLoadMore() async {
-    if (widget.control.isLoading) {
-      if (isLoadMoring) {
-        return null;
-      }
-
-      ///if loading, lock to await
-      await _lockToAwait();
-    }
-    isLoadMoring = true;
-    widget.control.isLoading = true;
-    await widget.onLoadMore?.call();
-    isLoadMoring = false;
-    widget.control.isLoading = false;
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (widget.userIos) {
-      ///用ios模式的下拉刷新
-      return NotificationListener(
-        onNotification: (ScrollNotification notification) {
-          ///通知 CupertinoSliverRefreshControl 当前的拖拽状态
-          sliverRefreshKey.currentState!.notifyScrollNotification(notification);
-          return false;
-        },
-        child: CustomScrollView(
-          controller: _scrollController,
-
-          ///回弹效果
-          physics: const CustomBouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-              refreshHeight: iosRefreshHeight),
-          slivers: <Widget>[
-            ///控制显示刷新的 CupertinoSliverRefreshControl
-            IOS.CupertinoSliverRefreshControl(
-              key: sliverRefreshKey,
-              refreshIndicatorExtent: iosRefreshIndicatorExtent,
-              refreshTriggerPullDistance: iosRefreshHeight,
-              onRefresh: handleRefresh,
-              builder: buildSimpleRefreshIndicator,
-            ),
-            SliverSafeArea(
-              sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return _getItem(index);
-                  },
-                  childCount: _getListCount(),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    return RefreshIndicator(
+    return new RefreshIndicator(
       ///GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新
       key: widget.refreshKey,
 
       ///下拉刷新触发，返回的是一个Future
-      onRefresh: handleRefresh,
-      child: ListView.builder(
+      onRefresh: widget.onRefresh ?? () async {},
+      child: new ListView.builder(
         ///保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。
         physics: const AlwaysScrollableScrollPhysics(),
 
@@ -258,13 +142,12 @@ class _GSYPullLoadWidgetState extends State<GSYPullLoadWidget>
           TextButton(
             onPressed: () {},
             child: Image(
-                image: AssetImage(GSYICons.DEFAULT_USER_ICON),
+                image: AssetImage(DEFAULT_USER_ICON),
                 width: 70.0,
                 height: 70.0),
           ),
           Container(
-            child: Text(GSYLocalizations.i18n(context)!.app_empty,
-                style: GSYConstant.normalText),
+            child: Text(app_empty, style: normalText),
           ),
         ],
       ),
@@ -275,26 +158,23 @@ class _GSYPullLoadWidgetState extends State<GSYPullLoadWidget>
   Widget _buildProgressIndicator() {
     ///是否需要显示上拉加载更多的loading
     Widget bottomWidget = (widget.control.needLoadMore)
-        ? Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-                ///loading框
-                SpinKitRotatingCircle(
-                    color: Theme.of(context).primaryColor),
-                Container(
-                  width: 5.0,
-                ),
+        ? Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+            ///loading框
+            SpinKitRotatingCircle(color: Theme.of(context).primaryColor),
+            Container(
+              width: 5.0,
+            ),
 
-                ///加载中文本
-                Text(
-                  GSYLocalizations.i18n(context)!.load_more_text,
-                  style: TextStyle(
-                    color: Color(0xFF121917),
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ])
+            ///加载中文本
+            Text(
+              load_more_text,
+              style: TextStyle(
+                color: Color(0xFF121917),
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+          ])
 
         /// 不需要加载
         : Container();
@@ -305,59 +185,15 @@ class _GSYPullLoadWidgetState extends State<GSYPullLoadWidget>
       ),
     );
   }
-
-  bool playAuto = false;
-
-  @override
-  bool get getPlayAuto => playAuto;
-
-  @override
-  double get refreshTriggerPullDistance => iosRefreshHeight;
-
-  Widget buildSimpleRefreshIndicator(
-    BuildContext? context,
-    IOS.RefreshIndicatorMode? refreshState,
-    double? pulledExtent,
-    double? refreshTriggerPullDistance,
-    double? refreshIndicatorExtent,
-  ) {
-    pulledExtentFlare = pulledExtent! * 0.6;
-    playAuto = refreshState == IOS.RefreshIndicatorMode.refresh;
-    /*if(refreshState == IOS.RefreshIndicatorMode.refresh) {
-      onRefreshing();
-    } else {
-      onRefreshEnd();
-    }*/
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        color: Colors.black,
-        width: MediaQuery.of(context!).size.width,
-
-        ///动态大小处理
-        height:
-            pulledExtent > iosRefreshHeight ? pulledExtent : iosRefreshHeight,
-        child: FlareActor(
-            //"static/file/Space-Demo.flr",
-            "static/file/loading_world_now.flr",
-            alignment: Alignment.topCenter,
-            fit: BoxFit.cover,
-            controller: this,
-            animation: "Earth Moving"
-            //animation: "idle"
-            ),
-      ),
-    );
-  }
 }
 
-class GSYPullLoadWidgetControl extends ChangeNotifier {
+class PullLoadWidgetControl extends ChangeNotifier {
   ///数据，对齐增减，不能替换
   List? _dataList = [];
 
   List? get dataList => _dataList;
 
- set dataList(List? value) {
+  set dataList(List? value) {
     _dataList!.clear();
     if (value != null) {
       _dataList!.addAll(value);

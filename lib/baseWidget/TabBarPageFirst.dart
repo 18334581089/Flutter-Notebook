@@ -21,6 +21,7 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Text('TabBarPageFirst');
   }
 }

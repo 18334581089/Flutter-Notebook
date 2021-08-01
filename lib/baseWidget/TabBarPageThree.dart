@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:githubappflutter/based/DemoPage.dart';
 
 class TabBarPageThree extends StatefulWidget {
   const TabBarPageThree({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _TabBarPageThreeState extends State<TabBarPageThree>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Text('TabBarPageThree');
   }
 }

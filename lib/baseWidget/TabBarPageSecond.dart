@@ -21,6 +21,7 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Text('TabBarPageSecond');
   }
 }
