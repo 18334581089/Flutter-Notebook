@@ -322,3 +322,27 @@ WillPopScope(
 > 4. 特点: (矢量动画, 可以极大的提高效率, 适合代码低耦合动画)
 
 **尝试引入博客中的flare文件成功**
+```
+dependencies:
+  flare_flutter: ^1.5.0
+```
+```
+flutter:
+  assets:
+    - flrs/
+```
+
+#### 8/1
+- 继续理解代码
+- 1.flare
+> 参考博客学会基础使用后,参照线上代码进行完善
+
+```
+dependencies:
+  flare_flutter:  ^3.0.0-nullsafety.0
+```
+```
+flutter:
+  assets:
+    - static/file/
+```
