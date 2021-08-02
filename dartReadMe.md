@@ -351,3 +351,10 @@ flutter:
 
 - AutomaticKeepAliveClientMixin: 纠正控制台格式校验
 > 1. 使用AutomaticKeepAliveClientMixin 要再build的时候加上`super.build(context);`这句话
+
+
+#### 8/2 
+- 已经纠正了页面提示的所有报错
+
+- 接下来就是使用
+1. 尝试在demoPage中使用pullWidget

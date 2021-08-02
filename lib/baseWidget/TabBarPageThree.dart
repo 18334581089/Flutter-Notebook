@@ -24,6 +24,8 @@ class _TabBarPageThreeState extends State<TabBarPageThree>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Text('TabBarPageThree');
+    return Scaffold(
+      body: DemoPage(),
+    );
   }
 }
