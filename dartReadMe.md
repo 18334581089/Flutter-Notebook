@@ -358,3 +358,79 @@ flutter:
 
 - 接下来就是使用
 1. 尝试在demoPage中使用pullWidget
+
+> 不会使用pullWidget: 不会传参
+> 警告: flutter_spinkit
+
+```
+The library 'package:flutter_spinkit/flutter_spinkit.dart' is legacy, and should not be imported into a null safe library.
+```
+
+> 解决: 去yaml文件下载最新版本
+
+2. pullWidget的第一个参数control
+
+> 1. 属于PullLoadWidgetControl类
+> 2. 继承ChangeNotifier类
+
+**ChangeNotifier含义如下[(博客)](https://blog.csdn.net/unicorn97/article/details/99877867)**
+> 类似于一个Observable，继承自Listenable，
+> 内部维护了一个ObserverList <VoidCallback> _listeners，提供添加和删除listener的方法，
+> 有一个notify方法，用来通知所有的观察者（或者称为消费者Consumer）
+
+- dart 狗在函数番外
+1. 普通构造函数
+```
+class Point {
+  num x, y;
+
+  Point(num x, num y) { // 普通
+    this.x = x;
+    this.y = y;
+  }
+}
+```
+
+2. 普通造函数简写
+```
+class Point {
+  num x, y;
+
+  Point(this.x, this.y); // 和上面一样效果
+}
+```
+
+3. 命名构造函数
+```
+  class Person {
+    String name;
+    num age;
+    
+    Person.fromDictionary(Map dic) { // 命名构造函数
+      this.name = dic["name"];
+      this.age = dic["age"];
+    }
+  }   
+```
+4. 调用父类构造函数
+```
+ class Person {
+    String firstName;
+
+    // 命名构造函数
+    Person.fromDictionary(Map data) {
+        print('in Person');
+      }
+  }
+
+  class Son extends Person {
+    // 父类没有无参数的，非命名的构造函数
+    // 所以必须手动调用一个父类的构造函数       
+    Son.fromDictionary(Map data) : super.fromDictionary(data) {
+        print('in Son');
+    };
+  }
+```
+> 使用冒号,后面的代码(直到分号结束)调用父类构造函数
+> 冒号后面的代码可以对firstName赋值
+> 父类构造函数无参数,并且非命名构造函数不适用以上情况

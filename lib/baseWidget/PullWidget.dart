@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const double iosRefreshHeight = 140;
@@ -28,8 +27,12 @@ class PullLoadWidget extends StatefulWidget {
   ///刷新key
   final Key? refreshKey;
 
-  PullLoadWidget(this.control, this.itemBuilder, this.onRefresh,
-      {this.refreshKey});
+  PullLoadWidget(
+    this.control,
+    this.itemBuilder,
+    this.onRefresh, {
+    this.refreshKey,
+  });
 
   @override
   _PullLoadWidgetState createState() => _PullLoadWidgetState();
@@ -84,28 +87,6 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
     }
   }
 
-  ///根据配置状态返回实际列表渲染Item
-  _getItem(int index) {
-    if (!widget.control.needHeader &&
-        index == widget.control.dataList!.length &&
-        widget.control.dataList!.length != 0) {
-      ///如果不需要头部，并且数据不为0，当index等于数据长度时，渲染加载更多Item（因为index是从0开始）
-      return _buildProgressIndicator();
-    } else if (widget.control.needHeader &&
-        index == _getListCount() - 1 &&
-        widget.control.dataList!.length != 0) {
-      ///如果需要头部，并且数据不为0，当index等于实际渲染长度 - 1时，渲染加载更多Item（因为index是从0开始）
-      return _buildProgressIndicator();
-    } else if (!widget.control.needHeader &&
-        widget.control.dataList!.length == 0) {
-      ///如果不需要头部，并且数据为0，渲染空页面
-      return _buildEmpty();
-    } else {
-      ///回调外部正常渲染Item，如果这里有需要，可以直接返回相对位置的index
-      return widget.itemBuilder(context, index);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return new RefreshIndicator(
@@ -130,6 +111,28 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
         controller: _scrollController,
       ),
     );
+  }
+
+  ///根据配置状态返回实际列表渲染Item
+  _getItem(int index) {
+    if (!widget.control.needHeader &&
+        index == widget.control.dataList!.length &&
+        widget.control.dataList!.length != 0) {
+      ///如果不需要头部，并且数据不为0，当index等于数据长度时，渲染加载更多Item（因为index是从0开始）
+      return _buildProgressIndicator();
+    } else if (widget.control.needHeader &&
+        index == _getListCount() - 1 &&
+        widget.control.dataList!.length != 0) {
+      ///如果需要头部，并且数据不为0，当index等于实际渲染长度 - 1时，渲染加载更多Item（因为index是从0开始）
+      return _buildProgressIndicator();
+    } else if (!widget.control.needHeader &&
+        widget.control.dataList!.length == 0) {
+      ///如果不需要头部，并且数据为0，渲染空页面
+      return _buildEmpty();
+    } else {
+      ///回调外部正常渲染Item，如果这里有需要，可以直接返回相对位置的index
+      return widget.itemBuilder(context, index);
+    }
   }
 
   ///空页面
