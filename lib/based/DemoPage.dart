@@ -7,7 +7,7 @@ class DemoPage extends StatefulWidget {
   _DemoPageState createState() => _DemoPageState();
 }
 
-final PullLoadWidgetControl pullLoadWidgetControl = PullLoadWidgetControl();
+final PullLoadWidgetControl _pullLoadWidgetControl = PullLoadWidgetControl();
 
 class _DemoPageState extends State<DemoPage> {
   @override
@@ -18,14 +18,7 @@ class _DemoPageState extends State<DemoPage> {
         title: Text('Text content'),
       ),
       body: PullLoadWidget(
-        pullLoadWidgetControl,
-        (BuildContext context, int index) => ListView.builder(
-          itemBuilder: (context, index) {
-            // return Text('data$index');
-            return DEMOWidget('data$index');
-          },
-          itemCount: 20,
-        ),
+        _pullLoadWidgetControl,
       ),
     );
   }

@@ -194,6 +194,17 @@ class PullLoadWidgetControl extends ChangeNotifier {
   ///数据，对齐增减，不能替换
   List? _dataList = [];
 
+  ///是否需要加载更多
+  bool _needLoadMore = true;
+
+  ///是否需要头部
+  bool _needHeader = true;
+
+  ///是否加载中
+  bool isLoading = false;
+
+  get needLoadMore => _needLoadMore;
+  get needHeader => _needHeader;
   List? get dataList => _dataList;
 
   set dataList(List? value) {
@@ -204,33 +215,20 @@ class PullLoadWidgetControl extends ChangeNotifier {
     }
   }
 
-  addList(List? value) {
-    if (value != null) {
-      _dataList!.addAll(value);
-      notifyListeners();
-    }
-  }
-
-  ///是否需要加载更多
-  bool _needLoadMore = true;
-
   set needLoadMore(value) {
     _needLoadMore = value;
     notifyListeners();
   }
-
-  get needLoadMore => _needLoadMore;
-
-  ///是否需要头部
-  bool _needHeader = true;
 
   set needHeader(value) {
     _needHeader = value;
     notifyListeners();
   }
 
-  get needHeader => _needHeader;
-
-  ///是否加载中
-  bool isLoading = false;
+  addList(List? value) {
+    if (value != null) {
+      _dataList!.addAll(value);
+      notifyListeners();
+    }
+  }
 }
