@@ -19,15 +19,28 @@ class _DemoPageState extends State<DemoPage> {
       ),
       body: PullLoadWidget(
         _pullLoadWidgetControl,
+        (BuildContext context, int index) => _renderItem(index),
       ),
     );
   }
+
+  /// 构建list
+  _renderItem(index) {
+    // 判断数据是否为空
+    if (_pullLoadWidgetControl.dataList!.length == 0) {
+      return null;
+    } else {
+      // 获取item
+      // return _pullLoadWidgetControl.dataList![index];
+      return DEMOWidget('data$index');
+    }
+  }
 }
 
-        // ListView.builder(
-        //   itemBuilder: (context, index) {
-        //     // return Text('data$index');
-        //     return DEMOWidget('data$index');
-        //   },
-        //   itemCount: 20,
-        // )
+  // ListView.builder(
+  //   itemBuilder: (context, index) {
+  //     // return Text('data$index');
+  //     return DEMOWidget('data$index');
+  //   },
+  //   itemCount: 20,
+  // )

@@ -219,5 +219,15 @@ The library 'package:flutter_spinkit/flutter_spinkit.dart' is legacy, and should
 > 不需要传参,因为没有写构造函数
 > 感觉时间花费了不少
 
-3. pullLoadWidget第二个参数
-> 1. IndexedWidgetBuilder
+3. pullLoadWidget第二个参数: IndexedWidgetBuilder
+> 1. 构造list的函数,返回一个widget, 该widget是list中的一项
+> 2. 参数有两个,第一个是context,第二个是index
+> 3. 当页面滚动到index的位置时,会自动调用改方法,并且展示对应widget
+
+4.在DemoPage简单实现 IndexedWidgetBuilder
+> 1. 察觉到问题,我并没有使用好第一个参数,
+> 2. 因为第二个参数的生效前提是第一个参数有了数据,所以,参照先上代码重新初始化第一个参数
+> 3. 发现在线上代码中,对pullLoadWidgetControl混入了GSYListState
+> 4. GSYListState对list进行了初始化
+
+** 没有找到对dataList初始化的地方,所以先停一下吧**
