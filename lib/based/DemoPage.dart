@@ -20,6 +20,7 @@ class _DemoPageState extends State<DemoPage> {
       body: PullLoadWidget(
         _pullLoadWidgetControl,
         (BuildContext context, int index) => _renderItem(index),
+        handleRefresh,
       ),
     );
   }
@@ -28,12 +29,44 @@ class _DemoPageState extends State<DemoPage> {
   _renderItem(index) {
     // 判断数据是否为空
     if (_pullLoadWidgetControl.dataList!.length == 0) {
-      return null;
+      return Text('null1');
+    } else if (index >= _pullLoadWidgetControl.dataList!.length) {
+      return Text('null2');
     } else {
       // 获取item
-      // return _pullLoadWidgetControl.dataList![index];
-      return DEMOWidget('data$index');
+      int _item = _pullLoadWidgetControl.dataList![index];
+      return DEMOWidget('data-index$index, data-value$_item');
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _pullLoadWidgetControl.dataList!.addAll([1, 2, 3]);
+    });
+  }
+
+  _asyncApi() async {
+    return await Future.delayed(
+        Duration(seconds: 2), () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+  }
+
+  bool isLoading = false;
+  Future<Null> handleRefresh() async {
+    if (isLoading) {
+      return null;
+    }
+    isLoading = true;
+
+    ///获取提交信息
+    var res = await _asyncApi();
+    _pullLoadWidgetControl.dataList!.clear();
+    setState(() {
+      _pullLoadWidgetControl.dataList!.addAll(res);
+    });
+    isLoading = false;
+    return null;
   }
 }
 

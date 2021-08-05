@@ -231,3 +231,18 @@ The library 'package:flutter_spinkit/flutter_spinkit.dart' is legacy, and should
 > 4. GSYListState对list进行了初始化
 
 ** 没有找到对dataList初始化的地方,所以先停一下吧**
+
+#### 8/5
+- PullLoadWidget的使用
+1. 简单处理初始化: 在demoPage中initstate初始赋值
+
+2. PullLoadWidget的最后一个参数
+> 1.RefreshCallback应该是一个回调函数类型不用多管
+> 2.模仿线上写了一个异步获取数据的方法
+
+3. 执行app进行测试
+> 1.app执行成功
+> 2.控制台报错
+
+ **RangeError (index): Index out of range: index should be less than 3: 3**
+> 解决问题了,因为index太大了,超出数据长度,返回null时会有报错
