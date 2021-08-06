@@ -39,7 +39,7 @@ class PullLoadWidget extends StatefulWidget {
 }
 
 class _PullLoadWidgetState extends State<PullLoadWidget> {
-  final ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
   bool isRefreshing = false;
 
@@ -53,7 +53,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
 
     ///初始化时创建控制器
     ///通过 with SingleTickerProviderStateMixin 实现动画效果。
-    // _tabController = new TabController(vsync: this, length: _tabItems.length);
+    // _tabController = TabController(vsync: this, length: _tabItems.length);
   }
 
   @override
@@ -89,13 +89,13 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new RefreshIndicator(
+    return RefreshIndicator(
       ///GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新
       key: widget.refreshKey,
 
       ///下拉刷新触发，返回的是一个Future
       onRefresh: widget.onRefresh ?? () async {},
-      child: new ListView.builder(
+      child: ListView.builder(
         ///保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。
         physics: const AlwaysScrollableScrollPhysics(),
 

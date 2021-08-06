@@ -246,3 +246,9 @@ The library 'package:flutter_spinkit/flutter_spinkit.dart' is legacy, and should
 
  **RangeError (index): Index out of range: index should be less than 3: 3**
 > 解决问题了,因为index太大了,超出数据长度,返回null时会有报错
+
+#### 8/6
+- PullLoadWidget 的最后阶段,理解代码
+
+> 1.ListView.builder的一个封装
+> 2.对上拉加载更多做了处理

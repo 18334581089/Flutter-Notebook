@@ -43,7 +43,7 @@ class _DemoPageState extends State<DemoPage> {
   void initState() {
     super.initState();
     setState(() {
-      _pullLoadWidgetControl.dataList!.addAll([1, 2, 3]);
+      _pullLoadWidgetControl.dataList!.addAll([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
     });
   }
 
@@ -52,6 +52,7 @@ class _DemoPageState extends State<DemoPage> {
         Duration(seconds: 2), () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
   }
 
+  // 下拉刷新的回调
   bool isLoading = false;
   Future<Null> handleRefresh() async {
     if (isLoading) {
