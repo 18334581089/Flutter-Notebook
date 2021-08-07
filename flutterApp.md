@@ -252,3 +252,49 @@ The library 'package:flutter_spinkit/flutter_spinkit.dart' is legacy, and should
 
 > 1.ListView.builder的一个封装
 > 2.对上拉加载更多做了处理
+
+#### 8/7
+- PullLoadWidget 理解代码,优化实例
+
+1. RefreshIndicator
+```
+RefreshIndicator(
+  //圆圈进度颜色
+  color: Colors.blue,
+  //下拉停止的距离
+  displacement: 44.0,
+  //背景颜色
+  backgroundColor: Colors.grey[200],
+  onRefresh: () async {
+    //模拟网络请求
+    await Future.delayed(Duration(milliseconds: 2000));
+    //结束刷新
+    return Future.value(true);
+  },
+  //一个列表 
+  child: ListView.builder(
+    itemBuilder: (BuildContext context, int index) {
+      return Container(
+        height: 66,
+        child: Text("测试数据"),
+      );
+    },
+    //列表数据源数量
+    itemCount: 100,
+  ),
+),
+```
+2. 上拉加载更多
+> 首先,列表最后加一个加载更多的item,
+> 然后,通过 `ListView.builder` 的controller属性监听滚动到底部
+> 最后,调用加载更多的方法
+3. _getListCount 获取列表数量的作用
+> 获取总长度: 当 `_dataList` 发生变化, _getListCount会自动根据当前长度和其他状态获取count总长度
+> `ListView.builder` 的 count 属性,用来规定当前list的总长度
+4. 是否需要头部功能 ?
+> 注释1: 如果需要头部，用Item 0 的 Widget 作为ListView的头部
+> 线上: GSYListState控件中, 初始化了,默认都是false
+`pullLoadWidgetControl.needHeader = needHeader;`
+> 没有找到true的情况(如果为true应该会再列表里面第一个加入一个表头之类的吧)
+2. refreshKey
+> 暂不了解

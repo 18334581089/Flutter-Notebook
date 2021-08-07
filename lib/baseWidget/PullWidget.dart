@@ -24,6 +24,9 @@ class PullLoadWidget extends StatefulWidget {
   ///控制器，比如数据和一些配置
   final PullLoadWidgetControl control;
 
+  ///加载更多回调
+  final RefreshCallback? onLoadMore;
+
   ///刷新key
   final Key? refreshKey;
 
@@ -32,6 +35,7 @@ class PullLoadWidget extends StatefulWidget {
     this.itemBuilder,
     this.onRefresh, {
     this.refreshKey,
+    this.onLoadMore,
   });
 
   @override
@@ -45,22 +49,42 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
 
   bool isLoadMoring = false;
 
-  // var _tabController;
-
   @override
   void initState() {
+    ///上拉加载更多
+    loadMore1();
     super.initState();
-
-    ///初始化时创建控制器
-    ///通过 with SingleTickerProviderStateMixin 实现动画效果。
-    // _tabController = TabController(vsync: this, length: _tabItems.length);
   }
 
   @override
   void dispose() {
-    ///页面销毁时，销毁控制器
-    // _tabController.dispose();
     super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return RefreshIndicator(
+      ///GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新
+      key: widget.refreshKey,
+
+      ///下拉刷新触发，返回的是一个Future
+      onRefresh: widget.onRefresh ?? () async {},
+      child: ListView.builder(
+        ///数据没有充满ListView也能滚动
+        physics: const AlwaysScrollableScrollPhysics(),
+
+        ///根据状态返回子控件
+        itemBuilder: (context, index) {
+          return _getItem(index);
+        },
+
+        ///根据状态返回数量
+        itemCount: _getListCount(),
+
+        ///滑动监听
+        controller: _scrollController,
+      ),
+    );
   }
 
   ///根据配置状态返回实际列表数量
@@ -87,32 +111,6 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return RefreshIndicator(
-      ///GlobalKey，用户外部获取RefreshIndicator的State，做显示刷新
-      key: widget.refreshKey,
-
-      ///下拉刷新触发，返回的是一个Future
-      onRefresh: widget.onRefresh ?? () async {},
-      child: ListView.builder(
-        ///保持ListView任何情况都能滚动，解决在RefreshIndicator的兼容问题。
-        physics: const AlwaysScrollableScrollPhysics(),
-
-        ///根据状态返回子孔健
-        itemBuilder: (context, index) {
-          return _getItem(index);
-        },
-
-        ///根据状态返回数量
-        itemCount: _getListCount(),
-
-        ///滑动监听
-        controller: _scrollController,
-      ),
-    );
-  }
-
   ///根据配置状态返回实际列表渲染Item
   _getItem(int index) {
     if (!widget.control.needHeader &&
@@ -133,6 +131,19 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
       ///回调外部正常渲染Item，如果这里有需要，可以直接返回相对位置的index
       return widget.itemBuilder(context, index);
     }
+  }
+
+  ///上拉加载更多
+  loadMore1() {
+    _scrollController.addListener(() {
+      ///判断当前滑动位置是不是到达底部，触发加载更多回调
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        if (widget.control.needLoadMore.value == true) {
+          widget.onLoadMore?.call();
+        }
+      }
+    });
   }
 
   ///空页面
