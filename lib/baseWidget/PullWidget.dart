@@ -33,9 +33,9 @@ class PullLoadWidget extends StatefulWidget {
   PullLoadWidget(
     this.control,
     this.itemBuilder,
-    this.onRefresh, {
+    this.onRefresh,
+    this.onLoadMore, {
     this.refreshKey,
-    this.onLoadMore,
   });
 
   @override

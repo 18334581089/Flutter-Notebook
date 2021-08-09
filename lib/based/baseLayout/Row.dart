@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import './_getBottomItem.dart';
 
@@ -8,33 +7,38 @@ class DEMOWidget extends StatelessWidget {
   //数据可以通过构造方法传递进来
   DEMOWidget(this.text);
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Container(
       ///卡片包装
       child: Card(
-           ///增加点击效果
+
+          ///增加点击效果
           child: TextButton(
-              onPressed: (){print("点击了哦");},
+              onPressed: () {
+                print("点击了哦");
+              },
               child: Padding(
-                padding: EdgeInsets.only(left: 0.0, top: 10.0, right: 10.0, bottom: 10.0),
+                padding: EdgeInsets.only(
+                    left: 0.0, top: 10.0, right: 10.0, bottom: 10.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ///文本描述
                     Container(
-                        child: Text(
-                          "这是一点描述",
-                          style: TextStyle(
-                            color: Colors.blue,
-                            fontSize: 14.0,
-                          ),
-                          ///最长三行，超过 ... 显示
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
+                      child: Text(
+                        text,
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontSize: 14.0,
                         ),
-                        margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
-                        alignment: Alignment.topLeft,
+
+                        ///最长三行，超过 ... 显示
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      margin: EdgeInsets.only(top: 6.0, bottom: 2.0),
+                      alignment: Alignment.topLeft,
                     ),
                     Padding(padding: EdgeInsets.all(10.0)),
 
@@ -52,5 +56,4 @@ class DEMOWidget extends StatelessWidget {
               ))),
     );
   }
-
 }

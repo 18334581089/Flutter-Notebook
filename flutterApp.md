@@ -298,3 +298,10 @@ RefreshIndicator(
 > 没有找到true的情况(如果为true应该会再列表里面第一个加入一个表头之类的吧)
 2. refreshKey
 > 暂不了解
+
+#### 8/9
+- PullLoadWidget 理解代码,优化实例
+
+1. 实现上拉
+2. 加载更多报错
+3. 底部null2不知道为啥

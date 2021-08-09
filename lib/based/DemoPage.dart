@@ -21,8 +21,23 @@ class _DemoPageState extends State<DemoPage> {
         _pullLoadWidgetControl,
         (BuildContext context, int index) => _renderItem(index),
         handleRefresh,
+        _onLoadMore,
       ),
     );
+  }
+
+  Future<Null> _onLoadMore() async {
+    print('执行了加载更多 数据会增加5个');
+    await Future.delayed(Duration(seconds: 2), () {
+      _pullLoadWidgetControl.dataList!.addAll([
+        _list.length,
+        _list.length + 1,
+        _list.length + 2,
+        _list.length + 3,
+        _list.length + 4
+      ]);
+    });
+    return null;
   }
 
   /// 构建list
@@ -47,9 +62,12 @@ class _DemoPageState extends State<DemoPage> {
     });
   }
 
+  List _list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   _asyncApi() async {
-    return await Future.delayed(
-        Duration(seconds: 2), () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+    return await Future.delayed(Duration(seconds: 2), () {
+      _list.add(_list.length);
+      return _list;
+    });
   }
 
   // 下拉刷新的回调
@@ -59,6 +77,8 @@ class _DemoPageState extends State<DemoPage> {
       return null;
     }
     isLoading = true;
+
+    print('触发刷新, 数据+1');
 
     ///获取提交信息
     var res = await _asyncApi();
