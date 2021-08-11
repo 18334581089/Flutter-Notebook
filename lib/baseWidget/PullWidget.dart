@@ -139,7 +139,7 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
       ///判断当前滑动位置是不是到达底部，触发加载更多回调
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        if (widget.control.needLoadMore.value == true) {
+        if (widget.control.needLoadMore == true) {
           widget.onLoadMore?.call();
         }
       }

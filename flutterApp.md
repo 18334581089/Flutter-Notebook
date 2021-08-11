@@ -305,3 +305,12 @@ RefreshIndicator(
 1. 实现上拉
 2. 加载更多报错
 3. 底部null2不知道为啥
+
+#### 8/11
+- PullLoadWidget 加载更多报错
+
+解决: 
+> widget.control.needLoadMore.value,
+> 这个值没有写默认值
+
+(还有一个问题: 无法启动项目,说是什么内存不够,但是过一会好了)

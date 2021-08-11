@@ -29,13 +29,9 @@ class _DemoPageState extends State<DemoPage> {
   Future<Null> _onLoadMore() async {
     print('执行了加载更多 数据会增加5个');
     await Future.delayed(Duration(seconds: 2), () {
-      _pullLoadWidgetControl.dataList!.addAll([
-        _list.length,
-        _list.length + 1,
-        _list.length + 2,
-        _list.length + 3,
-        _list.length + 4
-      ]);
+      setState(() {
+        _pullLoadWidgetControl.dataList!.addAll([11, 12, 13, 14, 15]);
+      });
     });
     return null;
   }
