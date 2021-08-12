@@ -7,9 +7,8 @@ class DemoPage extends StatefulWidget {
   _DemoPageState createState() => _DemoPageState();
 }
 
-final PullLoadWidgetControl _pullLoadWidgetControl = PullLoadWidgetControl();
-
 class _DemoPageState extends State<DemoPage> {
+  final PullLoadWidgetControl _pullLoadWidgetControl = PullLoadWidgetControl();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,28 +25,32 @@ class _DemoPageState extends State<DemoPage> {
     );
   }
 
+  /// 构建list
+  _renderItem(index) {
+    if (_pullLoadWidgetControl.dataList!.length == 0) {
+      return Text('数据为空');
+    }
+    if (index >= _pullLoadWidgetControl.dataList!.length) {
+      return Text('找不到对应$index索引的数据');
+    }
+    // 获取item
+    int _item = _pullLoadWidgetControl.dataList![index];
+    return DEMOWidget('data-index$index, data-value$_item');
+  }
+
+  /// 加载更多方法
   Future<Null> _onLoadMore() async {
-    print('执行了加载更多 数据会增加5个');
+    print('执行了加载更多 数据2s后会增加3个');
     await Future.delayed(Duration(seconds: 2), () {
       setState(() {
-        _pullLoadWidgetControl.dataList!.addAll([11, 12, 13, 14, 15]);
+        _pullLoadWidgetControl.dataList!.addAll([
+          _pullLoadWidgetControl.dataList!.length + 1,
+          _pullLoadWidgetControl.dataList!.length + 2,
+          _pullLoadWidgetControl.dataList!.length + 3,
+        ]);
       });
     });
     return null;
-  }
-
-  /// 构建list
-  _renderItem(index) {
-    // 判断数据是否为空
-    if (_pullLoadWidgetControl.dataList!.length == 0) {
-      return Text('null1');
-    } else if (index >= _pullLoadWidgetControl.dataList!.length) {
-      return Text('null2');
-    } else {
-      // 获取item
-      int _item = _pullLoadWidgetControl.dataList![index];
-      return DEMOWidget('data-index$index, data-value$_item');
-    }
   }
 
   @override

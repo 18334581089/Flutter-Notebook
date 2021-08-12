@@ -171,31 +171,24 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
   ///上拉加载更多
   Widget _buildProgressIndicator() {
     ///是否需要显示上拉加载更多的loading
-    Widget bottomWidget = (widget.control.needLoadMore)
-        ? Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
-            ///loading框
-            SpinKitRotatingCircle(color: Theme.of(context).primaryColor),
-            Container(
-              width: 5.0,
-            ),
-
-            ///加载中文本
-            Text(
-              load_more_text,
-              style: TextStyle(
-                color: Color(0xFF121917),
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-          ])
-
-        /// 不需要加载
-        : Container();
+    Widget _bottomWidget = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ///loading框
+        _spinkit,
+        _spinkit2,
+        _spinkit3,
+        Container(
+          width: 100.0,
+          height: 100.0,
+        ),
+        Text(load_more_text)
+      ],
+    );
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: Center(
-        child: bottomWidget,
+        child: widget.control.needLoadMore ? _bottomWidget : Container(),
       ),
     );
   }
@@ -209,7 +202,7 @@ class PullLoadWidgetControl extends ChangeNotifier {
   bool _needLoadMore = true;
 
   ///是否需要头部
-  bool _needHeader = true;
+  bool _needHeader = false;
 
   ///是否加载中
   bool isLoading = false;
@@ -243,3 +236,21 @@ class PullLoadWidgetControl extends ChangeNotifier {
     }
   }
 }
+
+/// 使用flutter_spinkit组件
+final _spinkit = SpinKitSquareCircle(
+  color: Colors.white,
+  size: 50.0,
+);
+final _spinkit2 = SpinKitRotatingCircle(
+  color: Colors.deepOrange,
+);
+final _spinkit3 = SpinKitFadingCircle(
+  itemBuilder: (BuildContext context, int index) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: index.isEven ? Colors.red : Colors.green,
+      ),
+    );
+  },
+);

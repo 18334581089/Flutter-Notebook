@@ -314,3 +314,33 @@ RefreshIndicator(
 > 这个值没有写默认值
 
 (还有一个问题: 无法启动项目,说是什么内存不够,但是过一会好了)
+
+#### 8/12
+- PullLoadWidget null2
+> 由于我写的假数据,却搞不懂为什么总有一个null2在底部(先把老的代码贴上去)
+```
+
+  _renderItem(index) {
+    // 判断数据是否为空
+    if (_pullLoadWidgetControl.dataList!.length == 0) {
+      return Text('null1');
+    } else if (index >= _pullLoadWidgetControl.dataList!.length) {
+      return Text('null2');
+    } else {
+      // 获取item
+      int _item = _pullLoadWidgetControl.dataList![index];
+      return DEMOWidget('data-index$index, data-value$_item');
+    }
+  }
+```
+> 改bug1分钟, 启动项目花了20分钟
+> 是因为默认会有一个needheader,所以每次都会比真是长度多一个
+> 1: 以后启动项目, 控制台不报错就先等着
+
+- 总算能接着往下看书了**Loading框**
+1. 引入
+```
+  #flutter_spinkit
+  flutter_spinkit: "5.0.0"
+```
+2. 使用内部的构建方法可以快速创建loading组件
