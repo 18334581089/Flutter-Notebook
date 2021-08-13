@@ -22,6 +22,12 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Text('TabBarPageFirst');
+    return Column(
+      children: [
+        Text('TabBarPageFirst'),
+        Icon(Icons.list, size: 50.0),
+        Icon(IconData(0xe6d0, fontFamily: "wxcIconFont"), size: 50.0),
+      ],
+    );
   }
 }

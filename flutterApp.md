@@ -344,3 +344,20 @@ RefreshIndicator(
   flutter_spinkit: "5.0.0"
 ```
 2. 使用内部的构建方法可以快速创建loading组件
+
+#### 8/13
+- 引入矢量图
+1. 引入阿里矢量图标
+```
+  fonts:
+    - family: wxcIconFont
+      fonts:
+        - asset: static/font/iconfont.ttf
+```
+> tab控件也是有默认高度限制的
+
+- 路有
+1. Navigator.pushNamed: 跳转,不带参数
+2. pushReplacementNamed: 跳转,替换上一个页面
+3. pushNamedAndRemoveUntil: 跳转,并且关闭给定路由的之前的所有页面
+4. push: 跳转，带参数并且监听返回

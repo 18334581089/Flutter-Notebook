@@ -182,7 +182,14 @@ class _PullLoadWidgetState extends State<PullLoadWidget> {
           width: 100.0,
           height: 100.0,
         ),
-        Text(load_more_text)
+        Text(
+          load_more_text,
+          style: TextStyle(
+            color: Color(0xFF121917),
+            fontSize: 14.0,
+            fontWeight: FontWeight.bold,
+          ),
+        )
       ],
     );
     return Padding(
