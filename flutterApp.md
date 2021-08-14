@@ -361,3 +361,21 @@ RefreshIndicator(
 2. pushReplacementNamed: 跳转,替换上一个页面
 3. pushNamedAndRemoveUntil: 跳转,并且关闭给定路由的之前的所有页面
 4. push: 跳转，带参数并且监听返回
+
+#### 8/14
+- 网络请求
+
+1. 去官网引入dio
+2. 实例
+```
+void getHttp() async {
+  try {
+    var response = await Dio().get('http://www.google.com');
+    print(response);
+  } catch (e) {
+    print(e);
+  }
+}
+```
+**执行getHttp会报错**
+3. 学习线上的

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:dio/dio.dart';
 
 class TabBarPageSecond extends StatefulWidget {
   const TabBarPageSecond({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
   @override
   void initState() {
     super.initState();
+    getHttp();
 
     /// 触发initState
     print('TabBarPageSecond 触发了 initState');
@@ -23,5 +25,14 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
   Widget build(BuildContext context) {
     super.build(context);
     return Text('TabBarPageSecond');
+  }
+}
+
+void getHttp() async {
+  try {
+    var response = await Dio().get('http://www.google.com');
+    print(response);
+  } catch (e) {
+    print(e);
   }
 }
