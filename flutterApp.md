@@ -379,3 +379,20 @@ void getHttp() async {
 ```
 **执行getHttp会报错**
 3. 学习线上的
+```
+Response response;
+try {
+  response = await _dio.request(url, data: params, options: option);
+} on DioError catch (e) {
+  return resultError(e);
+}
+if (response.data is DioError) {
+  return resultError(response.data);
+}
+return response.data;
+```
+这是线上封装的require代码,可以理解的
+
+#### 8/15
+- 继续文档: 实现最简单的Dio
+进行到一半
