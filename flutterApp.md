@@ -396,3 +396,37 @@ return response.data;
 #### 8/15
 - 继续文档: 实现最简单的Dio
 进行到一半
+
+#### 8/16
+- 继续文档: Json序列化
+```
+
+  #json_serializable
+  json_annotation: ^3.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  #json_serializable
+  json_serializable: ^3.2.0
+  build_runner: ^1.8.0
+```
+> 1.一个一个试,总算`flutter pub get`不在报错
+
+- Model 
+1. **创建实体Model**
+继承Object
+@JsonSerializable() 标记类名(标志class需要实现json序列化功能)
+创建如ModelDemo.dart文件
+2. **文件中其他部分**
+---
+1. `part 'ModelDemo.g.dart';`是通过命令生成的文件,用来访问访问`.g.dart` 中的私有方法
+2. `with _$ModelDemoSerializerMixin`是`.g.dart`文件中自动生成的抽象类(该抽象类实现了_$TemplateFromJson方法)
+3. `@JsonKey(name: "push_id")`通过JsonKey重新定义参数名
+4. `ModelDemo.fromJson`在`.g.dart`文件中，默认会根据当前类名如 AA 生成 _$AAeFromJson方法
+5. `_$ModelDemoFromJson(json)`返回实体抽象类
+---
+3. **执行命令成功**
+`flutter packages pub run build_runner build`
+4. 有问题,mixin没有
