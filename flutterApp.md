@@ -430,3 +430,15 @@ dev_dependencies:
 3. **执行命令成功**
 `flutter packages pub run build_runner build`
 4. 有问题,mixin没有
+
+#### 8/17
+- Model
+解决问题: 查看了线上的代码,新版中貌似没有再使用Mixin
+
+- flutter_redux
+1. 存储在 redux的好处
+> 某个页面修改了当前用户信息，所有绑定的该 State 的控件将由 Redux 自动同步修改，State 可以跨页面共享。
+
+2. **state.dart 文件**
+`class State` 全局state对象
+**目前还是看不太懂,redux也基本记不清楚了**
