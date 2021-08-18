@@ -442,3 +442,8 @@ dev_dependencies:
 2. **state.dart 文件**
 `class State` 全局state对象
 **目前还是看不太懂,redux也基本记不清楚了**
+
+#### 8/18
+- redux
+1. 和官网的写法有出入,所以遇到一些麻烦,
+2. 大概流程搞懂了,  写了State,reducer,Action  然后通过main方法引入state就好

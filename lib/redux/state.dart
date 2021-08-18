@@ -1,7 +1,7 @@
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-class State {
+class AppState {
   User? userInfo;
 
   State({
@@ -9,10 +9,8 @@ class State {
   });
 }
 
-///通过 Reducer 创建 用于store 的 Reducer
-State appReducer(State state, action) {
+State AppReducer(State state, action) {
   return State(
-    ///通过 UserReducer 将 State 内的 userInfo 和 action 关联在一起
     userInfo: UserReducer(state.userInfo, action),
   );
 }
