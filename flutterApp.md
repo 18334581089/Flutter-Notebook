@@ -447,3 +447,16 @@ dev_dependencies:
 - redux
 1. 和官网的写法有出入,所以遇到一些麻烦,
 2. 大概流程搞懂了,  写了State,reducer,Action  然后通过main方法引入state就好
+
+#### 8/19
+- redux
+1. `StoreProvider`咋用
+> 1. [博客](https://www.jianshu.com/p/9c1602f82b9e)
+> 2. flutter_redux提供了一个很棒的widget叫做StoreProvider，它的用法也很简单，接收一个store，和child Widget,对其子widget提供store
+> 3. 简单浏览博客
+
+| Provider | Redex |
+| --- | --- |
+| 流程上比较清晰，类似观察者模式 |Flutter_redex脱胎于前端的Redex框架，相对成熟 |
+| 代码量少，除了ChangeNotifier需要手动实现外，其余的都已经封装 | 适合业务复杂、状态数量大的场景 |
+| 可控制刷新范围 | 代码量比较大，许多内容需要手动实现 |
