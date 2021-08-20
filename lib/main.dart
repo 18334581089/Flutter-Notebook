@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 import 'baseWidget/TabBarBottomPageWidget.dart';
 import './redux/state.dart';
+import 'models/ModelDemo.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 /// initialState 初始化 State
-// final store = Store<AppState>(
-//   AppReducer,
-//   initialState: AppState(userInfo: {}),
-// );
+final store = Store<AppState>(
+  AppReducer,
+  initialState: AppState(userInfo: ModelDemo.empty()),
+);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return StoreProvider(
-      store: null,
+      store: store,
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),

@@ -456,7 +456,13 @@ dev_dependencies:
 > 3. 简单浏览博客
 
 | Provider | Redex |
-| --- | --- |
+| -- | -- |
 | 流程上比较清晰，类似观察者模式 |Flutter_redex脱胎于前端的Redex框架，相对成熟 |
 | 代码量少，除了ChangeNotifier需要手动实现外，其余的都已经封装 | 适合业务复杂、状态数量大的场景 |
 | 可控制刷新范围 | 代码量比较大，许多内容需要手动实现 |
+
+#### 8/20
+- redux
+1. 需要引入`redux.dart`才可以使用`Store`方法
+2. 解决所有的语法提示错误
+> ModelDemo 继承于 User

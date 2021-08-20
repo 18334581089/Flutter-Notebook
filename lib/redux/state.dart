@@ -4,13 +4,13 @@ import 'package:redux/redux.dart';
 class AppState {
   User? userInfo;
 
-  State({
+  AppState({
     this.userInfo,
   });
 }
 
-State AppReducer(State state, action) {
-  return State(
+AppState AppReducer(AppState state, action) {
+  return AppState(
     userInfo: UserReducer(state.userInfo, action),
   );
 }
