@@ -466,3 +466,9 @@ dev_dependencies:
 1. 需要引入`redux.dart`才可以使用`Store`方法
 2. 解决所有的语法提示错误
 > ModelDemo 继承于 User
+
+#### 8/21
+- 基础知识
+1. 构造函数,
+> : 表示构造函数调用父级的构造函数
+> {this.user} 是一个简写,并且,作为命名参数
