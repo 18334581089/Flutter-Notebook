@@ -14,7 +14,10 @@
       "request": "launch",
       "type": "dart",
       "flutterMode": "profile",
-      "args": ["–enable-software-rendering"] // 貌似可以在vscode端解决加载白屏问题
+      "args": [
+        "–enable-software-rendering", // 貌似可以在vscode端解决加载白屏问题
+        "--no-sound-null-safety",
+      ]
     }
   ]
 }

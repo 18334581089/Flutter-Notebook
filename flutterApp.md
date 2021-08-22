@@ -472,3 +472,32 @@ dev_dependencies:
 1. 构造函数,
 > : 表示构造函数调用父级的构造函数
 > {this.user} 是一个简写,并且,作为命名参数
+
+#### 8/22
+- redux
+
+> StoreProvider - InheritedWidget，可以将初始化时传进的store，向依赖了它的widget传递。
+> StoreBuilder -Widget ，把从StoreProvider获取到的store直接通过build方法返回。属于StoreConnector的一个封装
+> StoreConnector -Widget， 提供了将state数据转换为ViewModel的接口，当Store 分发更新后都会重新创建用来更新UI。
+
+1. 尝试启动报错
+
+```
+Error: Cannot run with sound null safety, because the following dependencies
+don't support null safety:
+
+- package:flutter_redux
+- package:redux
+- package:json_annotation
+
+For solutions, see https://dart.dev/go/unsound-null-safety
+```
+[博客网址](https://www.cnblogs.com/YONILOCElolo/p/15008892.html#)
+**博客上说以上有些包不支持 safety模式。**
+
+执行失败,爆红
+
+使用第二个方式
+[博客](https://stackoverflow.com/questions/64917744/cannot-run-with-sound-null-safety-because-dependencies-dont-support-null-safety)
+
+`If using vscode. create .vscode/launch.json in project root and add`

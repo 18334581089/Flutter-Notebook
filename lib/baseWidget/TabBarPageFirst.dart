@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 
 class TabBarPageFirst extends StatefulWidget {
   const TabBarPageFirst({Key? key}) : super(key: key);
@@ -27,6 +28,11 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
         Text('TabBarPageFirst'),
         Icon(Icons.list, size: 50.0),
         Icon(IconData(0xe6d0, fontFamily: "wxcIconFont"), size: 50.0),
+        TextButton(
+            onPressed: () {
+              print(StoreProvider.of(context).state.toString());
+            },
+            child: Text('点击打印state的文字'))
       ],
     );
   }
