@@ -41,7 +41,8 @@ dependencies:
   json_annotation: ^3.0.0
 
   #flutter_redux
-  flutter_redux: ^0.5.4
+  # flutter_redux: ^0.5.4
+  flutter_redux: ^0.7.0
 
 dev_dependencies:
   flutter_test:

@@ -501,3 +501,34 @@ For solutions, see https://dart.dev/go/unsound-null-safety
 [博客](https://stackoverflow.com/questions/64917744/cannot-run-with-sound-null-safety-because-dependencies-dont-support-null-safety)
 
 `If using vscode. create .vscode/launch.json in project root and add`
+
+#### 8/23
+- redux
+1. 目前的情况是,写好了redux想在组件中访问. 但是却无法启动项目
+报错: 
+```
+Error: Cannot run with sound null safety, because the following dependencies
+don't support null safety:
+
+- package:flutter_redux
+- package:redux
+- package:json_annotation
+```
+2. 通过第一种方法
+`flutter run --no-sound-null-safety`,执行报错
+3. 通过第二种方法
+`.vscode/launch.json` 中添加配置参数,无效
+
+- 继续研究第一种方法报错
+1. [博客](https://blog.csdn.net/ezconn/article/details/114409962)
+> 需要把redux使用0.7.0以上版本
+2. 再次执行
+再次执行`flutter run --no-sound-null-safety`没有报错
+3. 启动项目
+还是和之前一样错误
+4. 明白了
+flutter run 就是启动项目,没有报错表示项目已经启动了
+> 以后都需要使用命令行启动
+> 注意: 还是有缓存满了的提示
+`A message on the flutter/keyevent channel was discarded before it could be handled.`
+> 但是并不影响项目启动,显示
