@@ -12,7 +12,7 @@ void main() {
 /// initialState 初始化 State
 final store = Store<AppState>(
   AppReducer,
-  initialState: AppState(userInfo: ModelDemo.empty()),
+  initialState: AppState(userInfo: ModelDemo.test()),
 );
 
 class MyApp extends StatelessWidget {
@@ -124,10 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
             TextButton(
-                onPressed: () {
-                  Navigator.pushReplacementNamed(context, 'TabBarPage');
-                },
-                child: Text('点击跳转TabBar页面,并且无法返回'))
+              onPressed: () {
+                // Navigator.pushReplacementNamed(context, 'TabBarPage');
+                print(StoreProvider.of(context).state.userInfo.name);
+              },
+              child: Text('点击跳转TabBar页面,并且无法返回'),
+            )
           ],
         ),
       ),

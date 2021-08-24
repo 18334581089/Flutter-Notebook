@@ -532,3 +532,22 @@ flutter run 就是启动项目,没有报错表示项目已经启动了
 > 注意: 还是有缓存满了的提示
 `A message on the flutter/keyevent channel was discarded before it could be handled.`
 > 但是并不影响项目启动,显示
+
+#### 8/23
+- redux 能够访问到state中的数据
+1. 修改命名构造函数
+```
+  ModelDemo.test({name: 'name'});
+```
+2. 执行报错
+```
+The following StoreProviderError<StoreProvider<dynamic>> was thrown while handling a gesture:
+Error: No StoreProvider<dynamic> found. To fix, please try:
+
+  * Wrapping your MaterialApp with the StoreProvider<State>,
+  rather than an individual Route
+  * Providing full type information to your Store<State>,
+  StoreProvider<State> and StoreConnector<State, ViewModel>
+  * Ensure you are using consistent and complete imports.
+  E.g. always use `import 'package:my_app/app_state.dart';
+```

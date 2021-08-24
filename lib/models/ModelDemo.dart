@@ -19,5 +19,5 @@ class ModelDemo extends User {
       _$ModelDemoFromJson(json);
 
   // 命名构造函数
-  ModelDemo.empty();
+  ModelDemo.test({name: 'name'});
 }

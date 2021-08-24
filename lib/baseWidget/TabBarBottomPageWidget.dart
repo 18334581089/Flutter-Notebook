@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import './TabBarWidget.dart';
 import 'TabBarPageFirst.dart';
 import 'TabBarPageSecond.dart';
@@ -27,6 +28,12 @@ class _TabBarBottomPageWidgetState extends State<TabBarBottomPageWidget> {
       indicatorColor: Colors.white,
       title: Text("GithubFlutter"),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // print(StoreProvider.of(context).state.userInfo.name);
   }
 
   ///渲染底部Tab

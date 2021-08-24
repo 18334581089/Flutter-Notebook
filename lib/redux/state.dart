@@ -15,7 +15,9 @@ AppState AppReducer(AppState state, action) {
   );
 }
 
-class User {}
+class User {
+  // String name = 'name';
+}
 
 final UserReducer = combineReducers<User?>([
   TypedReducer<User?, UpdateUserAction>(_updateLoaded),
