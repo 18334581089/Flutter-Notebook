@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
+import 'package:dio/dio.dart';
 
 class TabBarPageFirst extends StatefulWidget {
   const TabBarPageFirst({Key? key}) : super(key: key);
@@ -15,6 +15,7 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
   @override
   void initState() {
     super.initState();
+    getHttp();
 
     /// 触发initState
     print('TabBarPageFirst 触发了 initState');
@@ -35,5 +36,14 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
             child: Text('点击打印state的文字'))
       ],
     );
+  }
+}
+
+void getHttp() async {
+  try {
+    // var response = await Dio().get('https://www.baidu.com/');
+    print('response');
+  } catch (e) {
+    print(e);
   }
 }

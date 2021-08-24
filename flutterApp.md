@@ -569,3 +569,13 @@ Error: No StoreProvider<dynamic> found. To fix, please try:
 
 - redux user 赋值
 1. 线上代码看不懂 如何 更新user状态
+找到了,在页面中,请求接口返回后掉哟那个
+`store.dispatch(new UpdateUserAction(resultData.data));`
+对新的userInfo进行更新
+2. 不请求,点击登录直接赋值
+
+3. **意外报错: getHttp()**
+```
+DioError [DioErrorType.response]: XMLHttpRequest error.
+```
+> 先忽略,先把redux走一圈

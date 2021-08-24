@@ -3,7 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'baseWidget/TabBarBottomPageWidget.dart';
 import './redux/state.dart';
-import 'models/ModelDemo.dart';
+import 'models/User.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +12,7 @@ void main() {
 /// initialState 初始化 State
 final store = Store<AppState>(
   AppReducer,
-  initialState: AppState(userInfo: ModelDemo.test()),
+  initialState: AppState(userInfo: User.empty()),
 );
 
 class MyApp extends StatelessWidget {
@@ -27,16 +27,6 @@ class MyApp extends StatelessWidget {
         routes: {"TabBarPage": (context) => TabBarBottomPageWidget()},
       ),
     );
-    // return MaterialApp(
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     primarySwatch: Colors.blue,
-    //   ),
-    //   home: MyHomePage(title: 'Flutter Demo Home Page'),
-    //   routes: {
-    //     "TabBarPage": (context) => TabBarBottomPageWidget(),
-    //   },
-    // );
   }
 }
 
@@ -68,21 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            TextButton(
-              onPressed: () {
-                // Navigator.pushReplacementNamed(context, 'TabBarPage');
-                var user1 = StoreProvider.of<AppState>(context).state.userInfo;
-                print(user1.toString());
-              },
-              child: Text('点击跳转TabBar页面,并且无法返回'),
-            )
+            Text('You have pushed the button this many times:'),
+            Text('$_counter', style: Theme.of(context).textTheme.headline4),
+            TextButton(child: Text('点击跳转TabBar页面,并且无法返回'), onPressed: nav)
           ],
         ),
       ),
@@ -92,5 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void nav() {
+    Navigator.pushReplacementNamed(context, 'TabBarPage');
   }
 }
