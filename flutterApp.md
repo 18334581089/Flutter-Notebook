@@ -533,7 +533,7 @@ flutter run 就是启动项目,没有报错表示项目已经启动了
 `A message on the flutter/keyevent channel was discarded before it could be handled.`
 > 但是并不影响项目启动,显示
 
-#### 8/23
+#### 8/24
 - redux 能够访问到state中的数据
 1. 修改命名构造函数
 ```
@@ -551,3 +551,21 @@ Error: No StoreProvider<dynamic> found. To fix, please try:
   * Ensure you are using consistent and complete imports.
   E.g. always use `import 'package:my_app/app_state.dart';
 ```
+
+#### 8/24
+- 解决redux报错
+[博客文章](https://blog.csdn.net/weixin_44520133/article/details/86476446)
+1. 错误发生在,当我访问state时报错
+`StoreProvider.of(context)`
+2. 改为,加上泛型的写法
+可以了,不会有报错,
+
+- redux使用
+1. 问题, 其他组件访问state可以了,但是不知道如何用来展示(设置get?)
+2. state,reducer,action 和 user,ModelDemo 混乱一片
+---
+1. 规范了User State的写法,
+2. 接下来是 赋值,访问,显示,自动更新
+
+- redux user 赋值
+1. 线上代码看不懂 如何 更新user状态

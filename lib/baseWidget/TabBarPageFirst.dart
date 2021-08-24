@@ -30,7 +30,7 @@ class _TabBarPageFirstState extends State<TabBarPageFirst>
         Icon(IconData(0xe6d0, fontFamily: "wxcIconFont"), size: 50.0),
         TextButton(
             onPressed: () {
-              print(StoreProvider.of(context).state.toString());
+              // print(StoreProvider.of(context).state.toString());
             },
             child: Text('点击打印state的文字'))
       ],

@@ -1,5 +1,5 @@
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
+import 'package:githubappflutter/models/User.dart';
+import './_user.dart';
 
 class AppState {
   User? userInfo;
@@ -13,23 +13,4 @@ AppState AppReducer(AppState state, action) {
   return AppState(
     userInfo: UserReducer(state.userInfo, action),
   );
-}
-
-class User {
-  // String name = 'name';
-}
-
-final UserReducer = combineReducers<User?>([
-  TypedReducer<User?, UpdateUserAction>(_updateLoaded),
-]);
-
-User? _updateLoaded(User? user, action) {
-  user = action.userInfo;
-  return user;
-}
-
-class UpdateUserAction {
-  final User? userInfo;
-
-  UpdateUserAction(this.userInfo);
 }
