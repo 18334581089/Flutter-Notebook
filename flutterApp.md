@@ -579,3 +579,9 @@ Error: No StoreProvider<dynamic> found. To fix, please try:
 DioError [DioErrorType.response]: XMLHttpRequest error.
 ```
 > 先忽略,先把redux走一圈
+4. 复制过来login函数,目前还有没改成静态的
+
+#### 8/25
+- redux user update
+1. 成功了: 点击登录赋值user,同时根据context获取
+2. 下一次就是自动同步组件

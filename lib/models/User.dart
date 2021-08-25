@@ -85,4 +85,9 @@ class User {
 
   // 命名构造函数
   User.empty();
+
+  // 命名构造函数
+  User.test() {
+    this.name = '段玉祥';
+  }
 }

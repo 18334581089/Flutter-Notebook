@@ -33,7 +33,6 @@ class _TabBarBottomPageWidgetState extends State<TabBarBottomPageWidget> {
   @override
   void initState() {
     super.initState();
-    // print(StoreProvider.of(context).state.userInfo.name);
   }
 
   ///渲染底部Tab

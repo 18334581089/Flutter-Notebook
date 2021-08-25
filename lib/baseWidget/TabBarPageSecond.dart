@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:githubappflutter/main.dart';
+import 'package:githubappflutter/models/User.dart';
+import 'package:githubappflutter/redux/_user.dart';
+import 'package:githubappflutter/redux/state.dart';
 
 class TabBarPageSecond extends StatefulWidget {
   const TabBarPageSecond({Key? key}) : super(key: key);
@@ -29,44 +33,26 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
           Text('userName: 18334581089@139.com'),
           TextButton(
             onPressed: () {
-              login('18334581089@139.com', '123123', store);
+              login('18334581089@139.com', '123123');
             },
             child: Text("点击登录"),
-          )
+          ),
+          TextButton(
+            onPressed: () {
+              print(StoreProvider.of<AppState>(context).state.userInfo!.name);
+            },
+            child: Text("点击打印名称(登陆后)"),
+          ),
         ],
       ),
     );
   }
 
   /// 登录接口
-  static login(userName, password, store) async {
-    // String type = userName + ":" + password;
-    // var bytes = utf8.encode(type);
-    // var base64Str = base64.encode(bytes);
-    // if (Config.DEBUG!) {
-    //   print("base64Str login " + base64Str);
-    // }
-
-    // Map requestParams = {
-    //   "scopes": ['user', 'repo', 'gist', 'notifications'],
-    //   "note": "admin_script",
-    //   "client_id": NetConfig.CLIENT_ID,
-    //   "client_secret": NetConfig.CLIENT_SECRET
-    // };
-
-    var res = await httpManager.netFetch(Address.getAuthorization(),
-        json.encode(requestParams), null, new Options(method: "post"));
-    dynamic resultData = null;
-    if (res != null && res.result) {
-      await LocalStorage.save(Config.PW_KEY, password);
-      var resultData = await getUserInfo(null);
-      if (Config.DEBUG!) {
-        print("user result " + resultData.result.toString());
-        print(resultData.data);
-        print(res.data.toString());
-      }
-      store.dispatch(new UpdateUserAction(resultData.data));
-    }
-    return new DataResult(resultData, res!.result);
+  static login(userName, password) async {
+    await Future.delayed(Duration(seconds: 1));
+    User _user = User.test();
+    store.dispatch(new UpdateUserAction(_user));
+    return {};
   }
 }
