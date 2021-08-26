@@ -585,3 +585,14 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 - redux user update
 1. 成功了: 点击登录赋值user,同时根据context获取
 2. 下一次就是自动同步组件
+
+#### 8/26
+- redux 更新状态自动同步组件
+1. 模范文档中给的实例 `DemoUseStorePage`, 先绑定
+2. 成功了: 当点击登录的时候,自动更新组件里面的数据
+需要使用组件 `StoreConnector`
+
+- 数据库
+1. flutter 数据库是做什么用的
+2. [官方](https://flutter.cn/docs/cookbook/persistence/sqlite)
+`用 SQLite 做数据持久化`

@@ -26,25 +26,32 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Center(
-      child: Column(
-        children: [
-          Text('TabBarPageSecond'),
-          Text('userName: 18334581089@139.com'),
-          TextButton(
-            onPressed: () {
-              login('18334581089@139.com', '123123');
-            },
-            child: Text("点击登录"),
+    return StoreConnector<AppState, User>(
+      converter: (store) => store.state.userInfo,
+      builder: (context, userInfo) {
+        String _text = userInfo.name == null ? '没数据' : userInfo.name as String;
+        return Center(
+          child: Column(
+            children: [
+              Text('TabBarPageSecond'),
+              Text(_text),
+              TextButton(
+                onPressed: () {
+                  login('18334581089@139.com', '123123');
+                },
+                child: Text("点击登录"),
+              ),
+              TextButton(
+                onPressed: () {
+                  print(
+                      StoreProvider.of<AppState>(context).state.userInfo!.name);
+                },
+                child: Text("点击打印名称(登陆后)"),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () {
-              print(StoreProvider.of<AppState>(context).state.userInfo!.name);
-            },
-            child: Text("点击打印名称(登陆后)"),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
