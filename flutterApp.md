@@ -596,3 +596,13 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 1. flutter 数据库是做什么用的
 2. [官方](https://flutter.cn/docs/cookbook/persistence/sqlite)
 `用 SQLite 做数据持久化`
+
+#### 8/27
+- 数据库 从官网把实例看了一遍
+1. 实例`db_test.dart`
+2. 最后要执行
+`flutter run lib/db_test.dart`
+
+3. **报错**
+`MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)`
+目前没解决
