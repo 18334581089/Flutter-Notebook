@@ -606,3 +606,10 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 3. **报错**
 `MissingPluginException(No implementation found for method getDatabasesPath on channel com.tekartik.sqflite)`
 目前没解决
+
+#### 8/28
+- 数据库报错
+1. [博客](https://stackoverflow.com/questions/62890116/missingpluginexceptionno-implementation-found-for-method-getdatabasespath-on-c)尝试修改`MainActivity`方法失败
+2. 尝试flutter clean失败
+3. 暂时告一段落,目前大部分博客是flutter1版本,先跳过这个问题
+> 4. 目前对db的了解,暂停,有时间看看线上的`DemoDb.dart`页面,关于数据库目前应该用不到
