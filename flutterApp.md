@@ -613,3 +613,8 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 2. 尝试flutter clean失败
 3. 暂时告一段落,目前大部分博客是flutter1版本,先跳过这个问题
 > 4. 目前对db的了解,暂停,有时间看看线上的`DemoDb.dart`页面,关于数据库目前应该用不到
+
+#### 8/29
+- 返回键监听: WillPopScope 
+1. 线上代码放在了home页面
+2. 文档中的实例代码格式报错,目前不知道原因
