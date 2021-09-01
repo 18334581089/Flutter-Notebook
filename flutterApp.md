@@ -623,3 +623,10 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 - 最后一天上班
 1. 查看willPopScope代码
 2. 写日记,回复消息
+
+#### 9/1
+- 搞定willPopScope
+1. 在实战书里面也有showDialog的使用,但是在拿过来之后会报错
+2. 找到问题了,因为showDialog 返回值可能是null,所以在写泛型的时候要写?
+3. 接下来实现实例种得返回提示功能
+4. 写完了showDialog组件,明天开始尝试
