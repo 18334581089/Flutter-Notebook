@@ -630,3 +630,10 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 2. 找到问题了,因为showDialog 返回值可能是null,所以在写泛型的时候要写?
 3. 接下来实现实例种得返回提示功能
 4. 写完了showDialog组件,明天开始尝试
+
+### 9/3
+- willPopScope测试功能
+1. 取消也会返回
+2. 确认会有报错
+报错内容是: **!_needsLayout is not true**
+3. 在onWillPop增加了一个判断就好了?

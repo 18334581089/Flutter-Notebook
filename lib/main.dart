@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 import 'baseWidget/TabBarBottomPageWidget.dart';
 import './redux/state.dart';
+import 'baseWidget/myWillPopScope.dart';
 import 'models/User.dart';
 
 void main() {
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: MyHomePage(title: 'Flutter Demo Home Page'),
-        routes: {"TabBarPage": (context) => TabBarBottomPageWidget()},
+        routes: {
+          "TabBarPage": (context) => TabBarBottomPageWidget(),
+          "HomePage": (context) => HomePage(),
+        },
       ),
     );
   }
@@ -60,7 +64,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text('You have pushed the button this many times:'),
             Text('$_counter', style: Theme.of(context).textTheme.headline4),
-            TextButton(child: Text('点击跳转TabBar页面,并且无法返回'), onPressed: nav)
+            TextButton(
+                child: Text('点击跳转TabBar页面,并且无法返回'), onPressed: _replacementN),
+            TextButton(
+                child: Text('点击跳转myWillPopScope页面'), onPressed: _pushNamed),
           ],
         ),
       ),
@@ -72,7 +79,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void nav() {
+  void _replacementN() {
     Navigator.pushReplacementNamed(context, 'TabBarPage');
+  }
+
+  void _pushNamed() {
+    Navigator.pushNamed(context, 'HomePage');
   }
 }
