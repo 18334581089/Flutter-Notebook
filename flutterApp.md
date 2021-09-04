@@ -663,3 +663,10 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
 ```
 
 3. 暂不使用,因为手机没法用
+
+- 键盘焦点处理
+1. 功能描述: 触摸收起键盘
+2. GestureDetector 组件
+> 这个组件用来解决 手势的
+> [博客](https://www.jianshu.com/p/96ab1c189683)
+> 读了一半
