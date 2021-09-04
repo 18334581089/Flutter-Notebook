@@ -631,9 +631,35 @@ DioError [DioErrorType.response]: XMLHttpRequest error.
 3. 接下来实现实例种得返回提示功能
 4. 写完了showDialog组件,明天开始尝试
 
-### 9/3
+#### 9/3
 - willPopScope测试功能
 1. 取消也会返回
 2. 确认会有报错
 报错内容是: **!_needsLayout is not true**
 3. 在onWillPop增加了一个判断就好了?
+
+#### 9/4
+- 前后台监听
+1. didChangeAppLifecycleState
+> 这个方法是在这个类中的WidgetsBindingObserver 
+> 可以用来监听应用程序状态(前后台状态)
+> 例如: app进入了后台或者前台
+2. 使用
+`with WidgetsBindingObserver`
+```
+@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+  switch (state) {
+    case AppLifecycleState.inactive: // 应用进入非活动状态: 有电话打过来
+      break;
+    case AppLifecycleState.resumed: //从后台切换前台，界面可见       
+      break;
+    case AppLifecycleState.paused: // 界面不可见，后台
+      break;
+    case AppLifecycleState.detached: // APP结束时调用
+      break;
+  }
+}
+```
+
+3. 暂不使用,因为手机没法用
