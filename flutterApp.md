@@ -670,3 +670,43 @@ void didChangeAppLifecycleState(AppLifecycleState state) {
 > 这个组件用来解决 手势的
 > [博客](https://www.jianshu.com/p/96ab1c189683)
 > 读了一半
+
+#### 9/5
+- 键盘焦点处理: 触摸收起键盘
+1. [读博客](https://www.jianshu.com/p/96ab1c189683)
+> android中每一个view都可以写onTouch(触摸事件),也可以通过setOnClickListener设置点击事件
+> flutter中只有button有默认的onPressed时间,其余组件想要点击需要通过GestureDetector
+```
+GestureDetector(
+  onTap: () => _printMsg("点击"),
+  onDoubleTap: () => _printMsg("双击"),
+  onLongPress: () => _printMsg("长按"),
+  onTapCancel: () => _printMsg("取消"),
+  onTapUp: (e) => _printMsg("松开"),
+  onTapDown: (e) => _printMsg("按下"),
+  child: Container(
+    decoration: BoxDecoration(color: Colors.redAccent),
+    width: 100,
+    height: 100,
+  ),
+)
+```
+> 文档中增加了一个属性behavior
+```
+behavior: How this gesture detector should behave during hit testing. [...]
+(此手势检测器在命中测试期间的行为方式)
+```
+> 值为: HitTestBehavior (enum)
+> translucent: 半透明,deferToChild,opaque,values(List< HitTestBehavior >)
+2. FocusScope
+> [博客](https://www.jianshu.com/p/09fa990f3aee)
+> FocusNode是用于Widget获取键盘焦点和处理键盘事件的对象。
+> 它是继承自ChangeNotifier，所以我们可以在任意位置获取对应的FocusNode信息
+> 内容太多,暂时不看了,我目前只需要知道`FocusScope.of(context).requestFocus`是干啥的就好就行
+> [第二篇博客](https://www.jianshu.com/p/fa3f8af90f72)
+```
+  /*设置 获取焦点*/
+  FocusScope.of(context).requestFocus(focus1);
+  /*传入空的焦点 则隐藏键盘*/
+  FocusScope.of(context).requestFocus(FocusNode());
+```

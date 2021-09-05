@@ -68,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('点击跳转TabBar页面,并且无法返回'), onPressed: _replacementN),
             TextButton(
                 child: Text('点击跳转myWillPopScope页面'), onPressed: _pushNamed),
+            TextButton(
+                child: Text('点击跳转myWillPopScope页面'), onPressed: _pushNamed),
           ],
         ),
       ),
