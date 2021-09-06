@@ -716,3 +716,7 @@ behavior: How this gesture detector should behave during hit testing. [...]
 - second页面测试隐藏键盘功能
 > 电脑端没有键盘事件,所以,
 > 把方法都拿过去
+
+- 启动页
+> 在 `launch_background.xml`解开默认注释
+> 在 同级 drawable 同级mipmap 文件中插入默认图片
