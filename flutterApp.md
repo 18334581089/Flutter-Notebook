@@ -710,3 +710,9 @@ behavior: How this gesture detector should behave during hit testing. [...]
   /*传入空的焦点 则隐藏键盘*/
   FocusScope.of(context).requestFocus(FocusNode());
 ```
+
+
+#### 9/6
+- second页面测试隐藏键盘功能
+> 电脑端没有键盘事件,所以,
+> 把方法都拿过去

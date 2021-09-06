@@ -30,25 +30,49 @@ class _TabBarPageSecondState extends State<TabBarPageSecond>
       converter: (store) => store.state.userInfo,
       builder: (context, userInfo) {
         String _text = userInfo.name == null ? '没数据' : userInfo.name as String;
-        return Center(
-          child: Column(
-            children: [
-              Text('TabBarPageSecond'),
-              Text(_text),
-              TextButton(
-                onPressed: () {
-                  login('18334581089@139.com', '123123');
-                },
-                child: Text("点击登录"),
-              ),
-              TextButton(
-                onPressed: () {
-                  print(
-                      StoreProvider.of<AppState>(context).state.userInfo!.name);
-                },
-                child: Text("点击打印名称(登陆后)"),
-              ),
-            ],
+        return GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode()); // 关闭
+          },
+          child: Center(
+            child: Column(
+              children: [
+                Text('TabBarPageSecond'),
+                Text(_text),
+                TextField(
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    labelText: "用户名",
+                    hintText: "用户名或邮箱",
+                    prefixIcon: Icon(Icons.person),
+                  ),
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "密码",
+                    hintText: "您的登录密码",
+                    prefixIcon: Icon(Icons.lock),
+                  ),
+                  obscureText: true,
+                ),
+                TextButton(
+                  onPressed: () {
+                    login('18334581089@139.com', '123123');
+                  },
+                  child: Text("点击登录"),
+                ),
+                TextButton(
+                  onPressed: () {
+                    print(StoreProvider.of<AppState>(context)
+                        .state
+                        .userInfo!
+                        .name);
+                  },
+                  child: Text("点击打印名称(登陆后)"),
+                ),
+              ],
+            ),
           ),
         );
       },
