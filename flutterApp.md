@@ -720,3 +720,16 @@ behavior: How this gesture detector should behave during hit testing. [...]
 - 启动页
 > 在 `launch_background.xml`解开默认注释
 > 在 同级 drawable 同级mipmap 文件中插入默认图片
+
+#### 9/7
+- 打包
+1. android : build.grade文件下配置
+2. flutter build app
+> 直接启用 build app 没有用(估计文档过期)
+3. 学习[官网文档](https://flutterchina.club/android-release/)
+> 1. **检查 App Manifest**: 清单文件AndroidManifest.xml, 其中声明了应用的软件包名称(application标签).打包应用时，构建工具会使用 Gradle 构建文件中的应用 ID 来替换此值
+> 2. **查看构建配置**: android/app/build.gradle文件,defaultConfig.applicationId 等等信息
+> 3. **启动图标**: 有一个默认的启动器图标android/app/src/main/res/ 文件下的ic_launcher图片
+> 4. **app签名**: 运行命令来创建签名,引用keystore,gradle中配置签名
+> 5. **开启混淆**: 混淆: 减小 apk 文件的大小或者防止代码被逆向破解
+> 6. **构建release APK**: flutter build apk
