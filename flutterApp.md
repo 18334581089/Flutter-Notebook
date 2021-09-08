@@ -733,3 +733,18 @@ behavior: How this gesture detector should behave during hit testing. [...]
 > 4. **app签名**: 运行命令来创建签名,引用keystore,gradle中配置签名
 > 5. **开启混淆**: 混淆: 减小 apk 文件的大小或者防止代码被逆向破解
 > 6. **构建release APK**: flutter build apk
+
+#### 9/8
+- 知识点
+1. AppBar 的 bottom可以放TabBar
+2. 可自动填充的按钮: RawMaterialButton(除去默认的宽高边距) + flex # TabBarPageFirst页面
+> [button博客](https://www.jianshu.com/p/88cdb7b8d67a)
+> Material 组件库 Button按钮 都是直接或间接对RawMaterialButton组件的包装定制, 
+> RawMaterialButton 核心是由 Material 和 InkWell 等组成,
+> RawMaterialButton 不可用当前 Theme 或 ButtonTheme 来计算未指定参数的默认值,
+3. StatefulWidget 赋值
+> [赋值博客](https://www.jianshu.com/p/f6f84d3a0292)
+> Android开发中 EditTextView 赋值直接调用setText()方法即可
+> flutter TextField 没有setText
+> flutter 赋值关键: TextField的controller：编辑框的控制器，跟文本框的交互一般都通过该属性完成，如果不创建的话默认会自动创建
+> 给 controller.value重新赋值就可以实现给TextField 赋值
