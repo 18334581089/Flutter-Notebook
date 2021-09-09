@@ -748,3 +748,10 @@ behavior: How this gesture detector should behave during hit testing. [...]
 > flutter TextField 没有setText
 > flutter 赋值关键: TextField的controller：编辑框的控制器，跟文本框的交互一般都通过该属性完成，如果不创建的话默认会自动创建
 > 给 controller.value重新赋值就可以实现给TextField 赋值
+
+
+#### 9/10
+- GlobalKey
+1. GlobalKey 主动改变子组件的状态
+> PullLoadWidget 中 RefreshIndicator 的key 使用的时外部传入的refreshKey, 
+> 在DemoPage中加入refreshIndicatorKey, 当调用Row中的showForRefresh方法时页面会更新刷新状态,调用刷新的方法

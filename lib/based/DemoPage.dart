@@ -7,6 +7,9 @@ class DemoPage extends StatefulWidget {
   _DemoPageState createState() => _DemoPageState();
 }
 
+GlobalKey<RefreshIndicatorState> refreshIndicatorKey =
+    GlobalKey<RefreshIndicatorState>();
+
 class _DemoPageState extends State<DemoPage> {
   final PullLoadWidgetControl _pullLoadWidgetControl = PullLoadWidgetControl();
   @override
@@ -21,6 +24,7 @@ class _DemoPageState extends State<DemoPage> {
         (BuildContext context, int index) => _renderItem(index),
         handleRefresh,
         _onLoadMore,
+        refreshKey: refreshIndicatorKey,
       ),
     );
   }
@@ -35,7 +39,10 @@ class _DemoPageState extends State<DemoPage> {
     }
     // 获取item
     int _item = _pullLoadWidgetControl.dataList![index];
-    return DEMOWidget('data-index$index, data-value$_item');
+    return DEMOWidget(
+      'data-index$index, data-value$_item',
+      refreshIndicatorKey,
+    );
   }
 
   /// 加载更多方法

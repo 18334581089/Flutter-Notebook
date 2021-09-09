@@ -3,9 +3,17 @@ import './_getBottomItem.dart';
 
 class DEMOWidget extends StatelessWidget {
   final text;
-
+  final GlobalKey<RefreshIndicatorState> refreshIndicatorKey;
   //数据可以通过构造方法传递进来
-  DEMOWidget(this.text);
+  DEMOWidget(
+    this.text,
+    this.refreshIndicatorKey,
+  );
+
+  showForRefresh() {
+    ///显示刷新
+    refreshIndicatorKey.currentState!.show();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +25,7 @@ class DEMOWidget extends StatelessWidget {
           child: TextButton(
               onPressed: () {
                 print("点击了哦");
+                showForRefresh();
               },
               child: Padding(
                 padding: EdgeInsets.only(
