@@ -750,8 +750,15 @@ behavior: How this gesture detector should behave during hit testing. [...]
 > 给 controller.value重新赋值就可以实现给TextField 赋值
 
 
-#### 9/10
+#### 9/9
 - GlobalKey
 1. GlobalKey 主动改变子组件的状态
 > PullLoadWidget 中 RefreshIndicator 的key 使用的时外部传入的refreshKey, 
 > 在DemoPage中加入refreshIndicatorKey, 当调用Row中的showForRefresh方法时页面会更新刷新状态,调用刷新的方法
+
+#### 9/10
+- 通过 Redux 来实现实时切换主题
+1. MaterialApp 中的theme赋值为state中的数据
+> MaterialApp theme 的值为ThemeData类型
+2. 定义ThemeData 
+> 找了好久的提示报错,因为没有加: `StoreBuilder<AppState>`
