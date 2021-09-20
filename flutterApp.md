@@ -762,3 +762,9 @@ behavior: How this gesture detector should behave during hit testing. [...]
 > MaterialApp theme 的值为ThemeData类型
 2. 定义ThemeData 
 > 找了好久的提示报错,因为没有加: `StoreBuilder<AppState>`
+
+### 9/20
+- 看之前写到哪了
+(看花了30分钟)
+- redux + 切换主题 + 切换语言 使用
+1. 先创建一个 State 对象
