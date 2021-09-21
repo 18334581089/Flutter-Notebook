@@ -6,13 +6,13 @@ import './_locale.dart';
 
 class AppState {
   User? userInfo;
-  ThemeData themeData;
-  Locale locale;
+  ThemeData? themeData;
+  Locale? locale;
 
   AppState({
     this.userInfo,
-    required this.themeData,
-    required this.locale,
+    this.themeData,
+    this.locale,
   });
 }
 

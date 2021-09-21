@@ -8,6 +8,7 @@ import './redux/state.dart';
 import 'baseWidget/myWillPopScope.dart';
 import 'models/User.dart';
 import 'redux/_themeData.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,10 +18,11 @@ void main() {
 final store = Store<AppState>(
   AppReducer,
   initialState: AppState(
-      userInfo: User.empty(),
-      themeData: ThemeData(
-        primarySwatch: primarySwatch,
-      )),
+    userInfo: User.empty(),
+    themeData: ThemeData(
+      primarySwatch: primarySwatch,
+    ),
+  ),
 );
 
 class MyApp extends StatelessWidget {
@@ -31,6 +33,14 @@ class MyApp extends StatelessWidget {
         child: StoreBuilder<AppState>(
           builder: (context, _store) {
             return MaterialApp(
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              supportedLocales: [
+                const Locale('en', 'US'), // 美国英语
+                const Locale('zh', 'CN'), // 中文简体
+              ],
               title: 'Flutter Demo',
               // theme: ThemeData(primarySwatch: Colors.blue),
               theme: _store.state.themeData,

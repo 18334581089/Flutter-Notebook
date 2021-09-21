@@ -763,8 +763,14 @@ behavior: How this gesture detector should behave during hit testing. [...]
 2. 定义ThemeData 
 > 找了好久的提示报错,因为没有加: `StoreBuilder<AppState>`
 
-### 9/20
+#### 9/20
 - 看之前写到哪了
 (看花了30分钟)
 - redux + 切换主题 + 切换语言 使用
 1. 先创建一个 State 对象
+
+#### 9/21
+- 看了一部分,和之前写的redux大致相同
+1. locale 类的声明使用
+> 先上代码也没有找到Locale的定义,那怎么用的呢
+> 看之前的实战记录 [文档](https://book.flutterchina.club/chapter13/multi_languages_support.html)1. 引入包 flutter_localizations 并且指定MaterialApp 2. Locale (opens new window)类是用来标识用户的语言环境的

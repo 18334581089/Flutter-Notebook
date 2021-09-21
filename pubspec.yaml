@@ -48,6 +48,10 @@ dependencies:
   sqflite:
   path:
 
+  #多语言
+  flutter_localizations:
+    sdk: flutter
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
