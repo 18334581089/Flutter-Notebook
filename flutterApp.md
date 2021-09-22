@@ -774,3 +774,18 @@ behavior: How this gesture detector should behave during hit testing. [...]
 1. locale 类的声明使用
 > 先上代码也没有找到Locale的定义,那怎么用的呢
 > 看之前的实战记录 [文档](https://book.flutterchina.club/chapter13/multi_languages_support.html)1. 引入包 flutter_localizations 并且指定MaterialApp 2. Locale (opens new window)类是用来标识用户的语言环境的
+
+#### 9/22
+- 主题
+1. flutter 默认主题设置
+> materialApp的theme参数设置主题,之后可以通过Theme.of(context)获取主题ThemeData
+> ThemeData 类的参数 primarySwitch, 是一个MaterialColor对象,区分Color对象
+
+- flutter 深入研究
+1. Mixins 
+`class G extends B with A, A2 {}`
+> 如果方法里面都没有写super, 调用B,A,A2中的同名方法,只会触发A2的
+2. Mixins2
+> WidgetsFlutterBinding在Flutter启动时runApp会被调用，作为App的入口
+> WidgetsFlutterBinding 通过 with 黏上去的各类 Binding，这些 Binding 也都继承了 BindingBase, 这里每个 Binding 都可以被单独使用, 也可以被混入到 WidgetsFlutterBinding中使用，这样做的效果，比起一级一级继承的结构更加清晰
+3. InheritedWidget

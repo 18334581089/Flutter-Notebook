@@ -19,9 +19,8 @@ final store = Store<AppState>(
   AppReducer,
   initialState: AppState(
     userInfo: User.empty(),
-    themeData: ThemeData(
-      primarySwatch: primarySwatch,
-    ),
+    themeData: ThemeData(primarySwatch: primarySwatch),
+    locale: Locale('zh', 'CH'),
   ),
 );
 
