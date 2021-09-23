@@ -789,3 +789,13 @@ behavior: How this gesture detector should behave during hit testing. [...]
 > WidgetsFlutterBinding在Flutter启动时runApp会被调用，作为App的入口
 > WidgetsFlutterBinding 通过 with 黏上去的各类 Binding，这些 Binding 也都继承了 BindingBase, 这里每个 Binding 都可以被单独使用, 也可以被混入到 WidgetsFlutterBinding中使用，这样做的效果，比起一级一级继承的结构更加清晰
 3. InheritedWidget
+
+#### 9/23
+- 国际化回顾
+1. flutter实战书里面写的比这个文档要详细一些
+(但是今天有个坏消息: (https://book.flutterchina.club/)访问不了了)
+
+- flutter 深入研究
+3. InheritedWidget
+> 1. InheritedElement 将自身也添加到映射关系表 _inheritedWidgets,实现了从下到上查找的功能
+> 2. updateShouldNotify 该方法返回true就会触发更新
