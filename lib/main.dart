@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
@@ -11,6 +12,7 @@ import 'redux/_themeData.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
+  GestureBinding.instance?.resamplingEnabled = true;
   runApp(MyApp());
 }
 
