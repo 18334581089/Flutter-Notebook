@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/gestures.dart';
@@ -13,7 +14,19 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   GestureBinding.instance?.resamplingEnabled = true;
-  runApp(MyApp());
+
+  runZonedGuarded(
+    () {
+      ErrorWidget.builder = (FlutterErrorDetails details) => Text(
+            details.exception.toString() + "\n" + details.stack.toString(),
+          );
+      runApp(MyApp());
+    },
+    (Object obj, StackTrace stack) {
+      print(obj);
+      print(stack);
+    },
+  );
 }
 
 /// initialState 初始化 State
